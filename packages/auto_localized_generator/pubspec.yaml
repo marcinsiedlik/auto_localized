@@ -1,0 +1,8 @@
+name: auto_localized_generator
+description: Code generator for auto_localized.
+version: 0.0.1
+homepage: https://github.com/marcinsiedlik/auto_localized
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+

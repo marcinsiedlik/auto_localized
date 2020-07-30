@@ -1,0 +1,13 @@
+include: analysis_lint_rules.yaml
+
+analyzer:
+
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.chopper.dart"
+    - "**/*.freezed.dart"
