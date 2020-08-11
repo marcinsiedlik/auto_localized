@@ -1,8 +1,8 @@
-import 'package:auto_localized_generator/src/config/model/initial_config_locale.dart';
+import 'package:auto_localized_generator/src/config/model/annotation_config_locale.dart';
 
 class MissingTranslationKeyException implements Exception {
-  final InitialConfigLocale locale;
-  final InitialConfigLocale missingInLocale;
+  final AnnotationConfigLocale locale;
+  final AnnotationConfigLocale missingInLocale;
   final String missingKey;
 
   const MissingTranslationKeyException(this.locale, this.missingInLocale, this.missingKey);
