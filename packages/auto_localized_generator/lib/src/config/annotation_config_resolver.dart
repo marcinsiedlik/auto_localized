@@ -1,5 +1,6 @@
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
+import 'package:auto_localized/annotations.dart';
 import 'package:auto_localized_generator/src/asset/asset_json_reader.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config_locale.dart';
@@ -19,11 +20,13 @@ class AnnotationConfigResolver {
   Future<AnnotationConfig> resolve() async {
     final className = _resolveClassName();
     final convertToCamelCase = _resolveConvertToCamelCase();
+    final onBlankValueStrategy = _resolveOnBlankValueStrategy();
     final locales = await _resolveLocales();
 
     return AnnotationConfig(
       className,
       convertToCamelCase,
+      onBlankValueStrategy,
       locales,
     );
   }
@@ -49,10 +52,21 @@ class AnnotationConfigResolver {
     final convertCase = _annotation.peek(AnnotationConfig.convertToCamelCaseField)?.boolValue;
     _throwSourceErrorIf(
       condition: () => convertCase == null,
-      message: 'Unexpected error occurred while inspecting "convertToCamelCase" in ${_element.name}. '
+      message: 'Unexpected error occurred while inspecting '
+          '"${AnnotationConfig.convertToCamelCaseField}" in ${_element.name}. '
           'Inspected value equals null.',
     );
     return _annotation.peek(AnnotationConfig.convertToCamelCaseField)?.boolValue;
+  }
+
+  OnBlankValueStrategy _resolveOnBlankValueStrategy() {
+    final accessor = _annotation.peek(AnnotationConfig.onBlankValueStrategyField)?.revive()?.accessor;
+    _throwSourceErrorIf(
+      condition: () => accessor == null,
+      message: 'Unexpected error occurred while inspecting '
+          '"${AnnotationConfig.onBlankValueStrategyField}" in ${_element.name}.',
+    );
+    return AnnotationConfig.onBlankValueStrategyStringMap[accessor];
   }
 
   Future<List<AnnotationConfigLocale>> _resolveLocales() async {
