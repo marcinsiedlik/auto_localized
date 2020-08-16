@@ -9,7 +9,7 @@ class MissingTranslationKeyException implements Exception {
 
   @override
   String toString() => 'An key: "$missingKey" is found in JSON file '
-      'for language: "${locale.info.languageCode}" but is missing '
-      'in  "${missingInLocale.info.languageCode}". Inspect these '
+      'for language: "${locale.info.toString()}" but is missing '
+      'in  "${missingInLocale.info.toString()}". Inspect these '
       'files and insert missing keys';
 }
