@@ -30,16 +30,16 @@ class LocalizedDataGenerator implements CodeGenerator {
   String _generateSupportedLocales() {
     final buffer = StringBuffer();
 
-    buffer.writeln('const supportedLocales = <Locale>[');
+    buffer.writeln('static const supportedLocales = <Locale>[');
     _locales.forEach((locale) {
-      buffer.writeln('${_generateLocaleDeclaration(locale.info)},');
+      buffer.writeln('${_generateLocaleConstructor(locale.info)},');
     });
     buffer.writeln('];');
 
     return buffer.toString();
   }
 
-  String _generateDelegateDeclaration() => 'static const delegate = AppLocalizationsDelegate(supportedLocales);';
+  String _generateDelegateDeclaration() => 'static const delegate = AutoLocalizationDelegate(supportedLocales);\n';
 
   String _generateLocalizationsDelegates() {
     final buffer = StringBuffer();
@@ -53,8 +53,8 @@ class LocalizedDataGenerator implements CodeGenerator {
     return buffer.toString();
   }
 
-  String _generateLocaleDeclaration(LocaleInfo info) => "Locale("
+  String _generateLocaleConstructor(LocaleInfo info) => "Locale("
       "'${info.languageCode}'"
       "${info.countryCode != null ? ",'${info.countryCode}'" : ''}"
-      ");";
+      ")";
 }
