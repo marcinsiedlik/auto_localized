@@ -2,6 +2,7 @@ import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:auto_localized/annotations.dart';
 import 'package:auto_localized_generator/src/asset/asset_json_reader.dart';
+import 'package:auto_localized_generator/src/config/annotation_config_validator.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config_locale.dart';
 import 'package:auto_localized_generator/src/model/locale_info.dart';
@@ -23,12 +24,17 @@ class AnnotationConfigResolver {
     final onBlankValueStrategy = _resolveOnBlankValueStrategy();
     final locales = await _resolveLocales();
 
-    return AnnotationConfig(
+    final config = AnnotationConfig(
       className,
       convertToCamelCase,
       onBlankValueStrategy,
       locales,
     );
+
+    //Validation of created config, throws Exception on invalid config
+    const AnnotationConfigValidator().validate(config);
+
+    return config;
   }
 
   String _resolveClassName() {

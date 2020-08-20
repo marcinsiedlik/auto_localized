@@ -3,6 +3,8 @@ import 'package:auto_localized_generator/src/model/localized_string.dart';
 import 'package:auto_localized_generator/src/model/mutable_localized_string.dart';
 
 class ConfigToLocalizedStringsConverter {
+  const ConfigToLocalizedStringsConverter();
+
   List<LocalizedString> map(AnnotationConfig config) {
     //Use keys of the first locale. After validation in
     //AnnotationConfigValidator it is certain that keys are identical
