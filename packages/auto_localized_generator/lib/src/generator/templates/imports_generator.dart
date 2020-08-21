@@ -10,9 +10,9 @@ class ImportsGenerator implements CodeGenerator {
   @override
   String generate() {
     final buffer = StringBuffer();
-    for (final import in _imports) {
+    _imports.forEach((import) {
       buffer.writeln("import '$import';");
-    }
+    });
 
     return buffer.toString();
   }

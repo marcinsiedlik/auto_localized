@@ -45,9 +45,9 @@ class LocalizedDataGenerator implements CodeGenerator {
     final buffer = StringBuffer();
 
     buffer.writeln('static const localizationsDelegates = [');
-    for (final delegate in delegates) {
+    delegates.forEach((delegate) {
       buffer.writeln('$delegate,');
-    }
+    });
     buffer.writeln('];');
 
     return buffer.toString();

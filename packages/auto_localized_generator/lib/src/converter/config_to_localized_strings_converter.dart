@@ -11,11 +11,11 @@ class ConfigToLocalizedStringsConverter {
     final translationKeys = config.locales.first.translations.keys;
     final strings = translationKeys.map((key) => MutableLocalizedString.empty(key)).toList();
 
-    for (final locale in config.locales) {
+    config.locales.forEach((locale) {
       locale.translations.forEach((key, value) {
         strings.firstWhere((e) => e.key == key)?.values[locale.info] = value;
       });
-    }
+    });
 
     return strings.map((mutable) => LocalizedString.fromMutable(mutable)).toList();
   }

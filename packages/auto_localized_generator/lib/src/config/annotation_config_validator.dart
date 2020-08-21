@@ -24,17 +24,17 @@ class AnnotationConfigValidator {
   }
 
   void _compareTwoLocalesKeys(AnnotationConfigLocale first, AnnotationConfigLocale second) {
-    for (final key in first.translations.keys) {
+    first.translations.keys.forEach((key) {
       if (!second.translations.containsKey(key)) {
         throw MissingTranslationKeyException(first, second, key);
       }
-    }
+    });
     //reverse key checking
-    for (final key in second.translations.keys) {
+    second.translations.keys.forEach((key) {
       if (!first.translations.containsKey(key)) {
         throw MissingTranslationKeyException(second, first, key);
       }
-    }
+    });
   }
 
   void _checkForBlankValues(AnnotationConfig config) {
@@ -43,9 +43,9 @@ class AnnotationConfigValidator {
     }
     final raiseError = config.onBlankValueStrategy == OnBlankValueStrategy.error;
 
-    for (final locale in config.locales) {
+    config.locales.forEach((locale) {
       _assureLocaleValuesNotBlank(locale, raiseError);
-    }
+    });
   }
 
   void _assureLocaleValuesNotBlank(AnnotationConfigLocale locale, bool raiseError) {

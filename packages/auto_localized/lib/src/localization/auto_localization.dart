@@ -8,9 +8,7 @@ class AutoLocalization {
 
   AutoLocalization(this.locale) {
     lastCachedLocale = locale;
-    for (final callback in _onLocaleUpdateCallbacks) {
-      callback.call(locale);
-    }
+    _onLocaleUpdateCallbacks.forEach((callback) => callback.call(locale));
   }
 
   static Locale lastCachedLocale;
