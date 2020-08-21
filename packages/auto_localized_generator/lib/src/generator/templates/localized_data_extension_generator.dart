@@ -6,6 +6,7 @@ class LocalizedDataExtensionGenerator implements CodeGenerator {
     final buffer = StringBuffer()
       ..writeln('extension AutoLocalizedContextExtension on BuildContext {')
       ..writeln('List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;')
+      ..writeln()
       ..writeln('List<LocalizationsDelegate> get localizationsDelegates => AutoLocalizedData.localizationsDelegates;')
       ..writeln('}');
 

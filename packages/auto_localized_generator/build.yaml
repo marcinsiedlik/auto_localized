@@ -2,6 +2,6 @@ builders:
   autoLocalized:
     import: "package:auto_localized_generator/builder.dart"
     builder_factories: ["autoLocalized"]
-    build_extensions: { "$lib$": [".g.dart"] }
+    build_extensions: { ".dart": [".al.dart"] }
     auto_apply: dependents
     build_to: source
