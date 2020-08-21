@@ -33,7 +33,7 @@ class AssetJsonReader {
   Future<String> _load(String path) async {
     final assetId = AssetId(_buildStep.inputId.package, path);
     try {
-      return _buildStep.readAsString(assetId);
+      return await _buildStep.readAsString(assetId);
     } on AssetNotFoundException catch (e) {
       throw JsonFileNotFoundException(e.assetId);
     }
