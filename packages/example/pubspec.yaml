@@ -1,0 +1,21 @@
+name: example
+description: An example for auto_localized library
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_localized:
+    path: ../auto_localized
+
+dev_dependencies:
+  build_runner: ^1.10.1
+  auto_localized_generator:
+    path: ../auto_localized_generator
+
+flutter:
+
+  uses-material-design: true
