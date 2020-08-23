@@ -33,7 +33,7 @@ dependencies:
   auto_localized: <latest_version>
 
 dev_dependencies:
-  build_runner: ^1.10.1 
+  build_runner: <latest_version>
   auto_localized_generator: <latest_version>
 ```
 
@@ -46,31 +46,35 @@ lang/
 ├── pl.json
 └── sk.json
 lib/
+build.yaml
 pubspec.yaml
 ```
 
-you need to tell [build](https://github.com/dart-lang/build) about that. To include folders other than `lib` you need to add them 
-to `sources`. Create `build.yaml` file in package directory. Example `build.yaml`:
+you need to tell [build_runner](https://pub.dev/packages/build_runner) about that, by overriding default `sources`
+(by default you can reference a file only from `lib` directory). Create new (or update existing) `build.yaml` file on the root 
+of the project and add following section: 
 ```yaml
 targets:
   $default:
     sources:
       - $package$
       - lib/**
-      - lang/**
+      - lang/**  # <-- your translations directory 
 ```
 
 You can look-up a sample configuration in the [example](https://github.com/marcinsiedlik/auto_localized/tree/master/packages/example).
 
+***Note:** Adding translations directory to `assets` section in `pubspec.yaml` is not required. Flutter don't need these files at runtime.*
+
 ### Configuration
 
-Create new dart file create a dummy class and annotate it with `AutoLocalized`. Example:
+Create new dart file with empty class and annotate it with `AutoLocalized`. 
+
+Example:
 ```dart
 import 'package:auto_localized/annotations.dart';
 
 @AutoLocalized(
-  convertToCamelCase: true,
-  onBlankValueStrategy: OnBlankValueStrategy.error,
   locales: [
     AutoLocalizedLocale(
       languageCode: 'pl',
@@ -89,8 +93,10 @@ import 'package:auto_localized/annotations.dart';
 )
 class _$Strings {}
 ```
-Class name have to start with: `_$`. It will be used in generated translations. For the example above it will be: `Strings`.
- 
+
+***Important:** path to translation file must be relative. Class have to start with `_$`. 
+Name of that class will be used as name of translation container class - for the example above it will be: `Strings`.*
+
 ### Generation
  
 Run the generator with command in terminal:
@@ -104,7 +110,7 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 ### Usage
 
-Gp to app declaration and add generated config fields: `supportedLocales` and `localizationsDelegates`:
+In app declaration add generated config fields: `supportedLocales` and `localizationsDelegates`:
 
 ```dart
 MaterialApp(
@@ -119,6 +125,8 @@ MaterialApp(
     );
 ```
 You can access these fields by `AutoLocalizedData` class or `AutoLocalizedContextExtension`.
+
+### Done!
 
 Translations are ready to use by:
 ```dart
