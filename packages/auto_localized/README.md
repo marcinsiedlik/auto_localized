@@ -1,6 +1,6 @@
 # auto_localized
 
-auto_localized is simplifying Flutter localization tool by using code generation.
+auto_localized is simplifying Flutter localization by using code generation.
 Using code generation has many advantages such as runtime-safety and better performance. The generator checks translation files for missing keys, blank values etc. and generates easy to use dart fields. 
 
 ---
