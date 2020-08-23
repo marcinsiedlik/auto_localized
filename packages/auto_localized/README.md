@@ -1,14 +1,9 @@
 # auto_localized
 
-Flutter localization tool that moves all the translation files validation
-from runtime to source generation step and generates easy to use fields. Usage example:
-```dart
-Text(
-  context.translate(Strings.welcome),
-)
-```
+auto_localized is simplifying Flutter localization tool by using code generation.
+Using code generation has many advantages such as runtime-safety and better performance. The generator checks translation files for missing keys, blank values etc. and generates easy to use dart fields. 
 
-Using code generation has many strong advantages such as runtime-safety and better performance.
+---
 
 ## Getting Started
 
@@ -144,4 +139,33 @@ Text(
 ### Example
 
 For typical complete setup checkout [example](https://github.com/marcinsiedlik/auto_localized/tree/master/packages/example).
+
+## Features
+
+### Annotation configuration
+
+auto_localized offers some configuration options for validation and code generation.
+
+| Option                 | Default value | Description |
+|------------------------|:-------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `locales`              |       -       | list of `AutoLocalizedLocale` to associate `language code` (and optionally `country code`) with json file. List can't be null or empty.                                                                                                                                                                                                                          |
+| `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example json key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
+| `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or consists of the characters of whites only. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
+
+### Locale update callback
+
+Often you would like to know when locale changes to perform different tasks: update network headers etc. 
+You can do that with `AutoLocalization.addOnLocaleChangeCallback`.
+
+Example:
+```dart
+AutoLocalization.addOnLocaleChangeCallback((locale) { 
+      //do stuff
+});
+```
+
+To stop listening for updates use `AutoLocalization.addOnLocaleChangeCallback`.
+
+## Additional
+Generate files have `.al.dart` extension, if You don't version controlling generated files don't forget to add it to `.gitigonre`
 
