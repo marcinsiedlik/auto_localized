@@ -1,7 +1,10 @@
 # auto_localized
 
 auto_localized is simplifying Flutter localization by using code generation.
-Using code generation has many advantages such as runtime-safety and better performance. The generator checks translation files for missing keys, blank values etc. and generates easy to use dart fields. 
+This approach has many advantages such as runtime-safety and better performance. The generator checks translation files for 
+missing keys, blank values etc. and outputs easy to use dart fields. 
+
+Supported file types: JSON, YAML.
 
 ---
 
@@ -34,10 +37,10 @@ dev_dependencies:
 
 ***Note:** no need for adding `flutter_localizations` dependency: `auto_localized` does it for you.*
 
-If you store your translation json files outside of `lib` folder (which you should), example structure:
+If you store your translations files outside of `lib` folder (which you should), example structure:
 ```
 lang/
-├── en.json
+├── en.yaml
 ├── pl.json
 └── sk.json
 lib/
@@ -57,7 +60,7 @@ targets:
       - lang/**  # <-- your translations directory 
 ```
 
-You can look-up a sample configuration in the [example](https://github.com/marcinsiedlik/auto_localized/tree/master/packages/example).
+You can checkout sample configuration in the [example](https://github.com/marcinsiedlik/auto_localized/tree/master/packages/example).
 
 ***Note:** Adding translations directory to `assets` section in `pubspec.yaml` is not required. Flutter don't need these files at runtime.*
 
@@ -78,7 +81,7 @@ import 'package:auto_localized/annotations.dart';
     AutoLocalizedLocale(
       languageCode: 'en',
       countryCode: 'US',
-      jsonFilePath: 'lang/en.json',
+      jsonFilePath: 'lang/en.yaml',
     ),
     AutoLocalizedLocale(
       languageCode: 'sk',
@@ -110,10 +113,6 @@ In app declaration add generated config fields: `supportedLocales` and `localiza
 ```dart
 MaterialApp(
       title: 'Auto Localized Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationsDelegates,
       home: HomePage(),
@@ -148,9 +147,9 @@ auto_localized offers some configuration options for validation and code generat
 
 | Option                 | Default value | Description |
 |------------------------|:-------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `locales`              |       -       | list of `AutoLocalizedLocale` to associate `language code` (and optionally `country code`) with json file. List can't be null or empty.                                                                                                                                                                                                                          |
-| `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example json key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
-| `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or consists of the characters of whites only. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
+| `locales`              |       -       | list of `AutoLocalizedLocale` to associate language code (and optionally country code) with translations file. List can't be null or empty.                                                                                                                                                                                                                          |
+| `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
+| `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or contains only whitespaces. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
 
 ### Locale update callback
 
