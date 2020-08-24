@@ -8,8 +8,8 @@ class MissingTranslationKeyException implements Exception {
   const MissingTranslationKeyException(this.locale, this.missingInLocale, this.missingKey);
 
   @override
-  String toString() => 'An key: "$missingKey" is found in JSON file '
-      'for language: "${locale.info.toString()}" but is missing '
+  String toString() => 'An key: "$missingKey" is found in translation file '
+      'for locale: "${locale.info.toString()}" but is missing '
       'in  "${missingInLocale.info.toString()}". Inspect these '
       'files and insert missing keys';
 }

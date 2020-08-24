@@ -8,5 +8,5 @@ class TranslationValueBlankException implements Exception {
 
   @override
   String toString() => 'Translation value for key: "$blankValueKey" is blank. '
-      'Found in JSON file for locale: "${locale.info.toString()}"" ';
+      'Found in translation file for locale: "${locale.info.toString()}"" ';
 }
