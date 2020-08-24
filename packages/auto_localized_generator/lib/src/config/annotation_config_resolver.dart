@@ -1,22 +1,22 @@
 import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:auto_localized/annotations.dart';
-import 'package:auto_localized_generator/src/asset/asset_json_reader.dart';
+import 'package:auto_localized_generator/src/asset/asset_reader.dart';
 import 'package:auto_localized_generator/src/config/annotation_config_validator.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config_locale.dart';
 import 'package:auto_localized_generator/src/model/locale_info.dart';
 import 'package:auto_localized_generator/src/utils/string_extensions.dart';
-import 'package:build/build.dart';
+import 'package:build/build.dart' hide AssetReader;
 import 'package:source_gen/source_gen.dart';
 
 class AnnotationConfigResolver {
   final Element _element;
   final ConstantReader _annotation;
-  final AssetJsonReader _assetJsonReader;
+  final AssetReader _assetReader;
 
   AnnotationConfigResolver(this._element, this._annotation, BuildStep buildStep)
-      : _assetJsonReader = AssetJsonReader(buildStep);
+      : _assetReader = AssetReader(buildStep);
 
   Future<AnnotationConfig> resolve() async {
     final className = _resolveClassName();
@@ -45,6 +45,10 @@ class AnnotationConfigResolver {
     _throwSourceErrorIf(
       condition: () => !_element.isPrivate,
       message: '${_element.name} is just dummy class for annotation and it should be private',
+    );
+    _throwSourceErrorIf(
+      condition: () => _element.name.length <= 2,
+      message: '${_element.name} is too short',
     );
     _throwSourceErrorIf(
       condition: () => _element.name.substring(0, 2) != '_\$',
@@ -92,19 +96,19 @@ class AnnotationConfigResolver {
   Future<AnnotationConfigLocale> _resolveLocale(DartObject object) async {
     final languageCode = object.getField(AnnotationConfigLocale.languageCodeField)?.toStringValue();
     final countryCode = object.getField(AnnotationConfigLocale.countryCodeField)?.toStringValue();
-    final jsonFilePath = object.getField(AnnotationConfigLocale.jsonFilePathField)?.toStringValue();
+    final filePath = object.getField(AnnotationConfigLocale.translationsFilePathField)?.toStringValue();
 
     _throwSourceErrorIf(
-      condition: () => languageCode.isNullOrBlank || jsonFilePath.isNullOrBlank,
+      condition: () => languageCode.isNullOrBlank || filePath.isNullOrBlank,
       message: '''
-    "${AnnotationConfigLocale.languageCodeField}" and "${AnnotationConfigLocale.jsonFilePathField}"
-    in auto localized locale declaration cant be null or blank
+    "${AnnotationConfigLocale.languageCodeField}" and "${AnnotationConfigLocale.translationsFilePathField}"
+    in auto localized locale declaration can't be null or blank
     ''',
     );
 
     return AnnotationConfigLocale(
       LocaleInfo(languageCode, countryCode),
-      await _assetJsonReader.loadAndDecode(jsonFilePath),
+      await _assetReader.loadAndDecode(filePath),
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:auto_localized_generator/src/model/locale_info.dart';
 class AnnotationConfigLocale {
   static const languageCodeField = 'languageCode';
   static const countryCodeField = 'countryCode';
-  static const jsonFilePathField = 'jsonFilePath';
+  static const translationsFilePathField = 'translationsFilePath';
 
   final LocaleInfo info;
   final Map<String, String> translations;

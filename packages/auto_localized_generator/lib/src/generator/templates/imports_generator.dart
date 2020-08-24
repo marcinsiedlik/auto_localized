@@ -2,9 +2,9 @@ import 'code_generator.dart';
 
 class ImportsGenerator implements CodeGenerator {
   static const _imports = [
+    'package:auto_localized/auto_localized.dart',
     'package:flutter/cupertino.dart',
     'package:flutter/material.dart',
-    'package:auto_localized/auto_localized.dart',
   ];
 
   @override
