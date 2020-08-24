@@ -2,6 +2,7 @@ import 'package:auto_localized/src/localization/auto_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///Delegate for [AutoLocalization]. Used in generated code.
 class AutoLocalizationDelegate extends LocalizationsDelegate<AutoLocalization> {
   final List<Locale> supportedLocales;
 

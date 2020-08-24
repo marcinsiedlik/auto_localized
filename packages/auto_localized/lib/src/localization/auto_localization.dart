@@ -11,6 +11,9 @@ class AutoLocalization {
     _onLocaleUpdateCallbacks.forEach((callback) => callback.call(locale));
   }
 
+  ///Updated when [AutoLocalization] constructor is called - locale changed.
+  ///Used for translation without [BuildContext] (experimental).
+  ///Field initializes with null, use with null checks.
   static Locale lastCachedLocale;
 
   static final List<LocaleUpdateCallback> _onLocaleUpdateCallbacks = [];
