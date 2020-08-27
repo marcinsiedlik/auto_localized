@@ -42,6 +42,14 @@ abstract class LocalizedStringType {
     }
   }
 
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LocalizedStringType && runtimeType == other.runtimeType && id == other.id && name == other.name;
+
+  @override
+  int get hashCode => id.hashCode ^ name.hashCode;
+
   static const _arg1 = '{1}';
   static const _arg2 = '{2}';
   static const _arg3 = '{3}';
