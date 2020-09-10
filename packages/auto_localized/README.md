@@ -5,6 +5,10 @@ This approach has many advantages such as runtime-safety and better performance.
 missing keys, blank values etc. and outputs easy to use dart fields. 
 
 Supported file types: JSON, YAML.
+* Generation time validation
+* Get translations without `BuildContext`
+* Safe Arguments
+* Supported file types: JSON, YAML
 
 ---
 
@@ -108,15 +112,16 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 ### Usage
 
-In app declaration add generated config fields: `supportedLocales` and `localizationsDelegates`:
+In app declaration add generated config fields: `supportedLocales` and `localizationsDelegates`\. 
+Also, if you want to get translations without context you need to wrap `MaterialApp` with `AutoLocalizedApp`:
 
 ```dart
-MaterialApp(
-      title: 'Auto Localized Example',
-      supportedLocales: context.supportedLocales,
-      localizationsDelegates: context.localizationsDelegates,
-      home: HomePage(),
-    );
+return AutoLocalizedApp(
+  child: MaterialApp(
+    supportedLocales: context.supportedLocales,
+    localizationsDelegates: context.localizationsDelegates,
+  ),
+);
 ```
 You can access these fields by `AutoLocalizedData` class or `AutoLocalizedContextExtension`.
 
@@ -125,13 +130,19 @@ You can access these fields by `AutoLocalizedData` class or `AutoLocalizedContex
 Translations are ready to use by:
 ```dart
 Text(
-  context.translate(Strings.welcome),
+  Strings.welcome.get(context),
 )
 ```
-or:
+you can also get translations without context:
+ ```dart
+ Text(
+   Strings.welcome.get(),
+ )
+ ```
+`BuildContext` extension is also here:
 ```dart
 Text(
-  Strings.welcome.get(context),
+  context.translate(Strings.welcome),
 )
 ```
 
@@ -140,6 +151,43 @@ Text(
 For typical complete setup checkout [example](https://github.com/marcinsiedlik/auto_localized/tree/master/packages/example).
 
 ## Features
+
+### Safe Arguments
+
+You can define up to 5 arguments in for your translations, to define argument use syntax: `{(number from 1 to 5)}`
+for example:
+```json
+{
+  "welcome_message" : "Welcome {1}!, You have {2} points."
+}
+``` 
+Result: 
+```dart
+Strings.welcomeMessage('Marcin', '3');
+```
+***Note:** These arguments are required - The compiler will force you to pass these arguments.*
+
+You can also get args translation without applying them with `getRaw()` method.
+
+Argument with given number can be used as much as you want, example:
+```json
+{
+  "distance" : "Traveled: {2} {1} - Distance: {3} {1}"
+}
+``` 
+Result: 
+```dart
+Strings.distance('km', '12', '30');
+```
+
+You can get args translations with `BuildContext` extension method:
+```dart
+Text(
+  context.translate(Strings.welcomeMessage, 'Marcin', '3'),
+)
+```
+This is not recommended method, because Dart [does not support method overloading](https://github.com/dart-lang/language/issues/1122).
+Compiler can't force you to pass all required arguments, default value for missing argument is `""`.
 
 ### Annotation configuration
 
@@ -150,6 +198,13 @@ auto_localized offers some configuration options for validation and code generat
 | `locales`              |       -       | list of `AutoLocalizedLocale` to associate language code (and optionally country code) with translations file. List can't be null or empty.                                                                                                                                                                                                                          |
 | `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
 | `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or contains only whitespaces. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
+
+### Current locale
+
+You can access the current locale with:
+```dart
+AutoLocalization.instance.locale;
+```
 
 ### Locale update callback
 
@@ -163,8 +218,19 @@ AutoLocalization.addOnLocaleChangeCallback((locale) {
 });
 ```
 
-To stop listening for updates use `AutoLocalization.addOnLocaleChangeCallback`.
+To stop listening for updates use `AutoLocalization.removeOnLocaleChangeCallback`.
 
+Example:
+```dart
+
+void onLocaleChange(Locale locale) {
+  //do stuff
+}
+
+AutoLocalization.addOnLocaleChangeCallback(onLocaleChange);
+
+AutoLocalization.removeOnLocaleChangeCallback(onLocaleChange);
+```
 ## Additional
-Generate files have `.al.dart` extension, if You don't version controlling generated files don't forget to add it to `.gitigonre`
+Generate files have `.al.dart` extension, if You don't version controlling generated files don't forget to add it to `.gitignore`
 

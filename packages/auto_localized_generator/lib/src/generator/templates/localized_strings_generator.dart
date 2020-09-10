@@ -32,7 +32,7 @@ class LocalizedStringsGenerator implements CodeGenerator {
   String _generateLocalizedStringDefinition(LocalizedString string) {
     final name = _config.convertStringsToCamelCase ? string.key.camelCase : string.key;
     final buffer = StringBuffer()
-      ..writeln("static const $name = LocalizedString(")
+      ..writeln("static const $name = ${string.type.name}(")
       ..writeln("key: '${string.key}',")
       ..writeln("values: {")
       ..writeln(_generateValuesMapDeclaration(string.values))

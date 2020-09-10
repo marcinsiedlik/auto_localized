@@ -12,7 +12,10 @@ class AutoLocalizationDelegate extends LocalizationsDelegate<AutoLocalization> {
   bool isSupported(Locale locale) => supportedLocales.contains(locale);
 
   @override
-  Future<AutoLocalization> load(Locale locale) => Future.value(AutoLocalization(locale));
+  Future<AutoLocalization> load(Locale locale) {
+    AutoLocalization.updateLocale(locale);
+    return Future.value(AutoLocalization.instance);
+  }
 
   @override
   bool shouldReload(LocalizationsDelegate<AutoLocalization> old) => false;
