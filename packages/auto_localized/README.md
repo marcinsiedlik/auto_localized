@@ -6,6 +6,7 @@ missing keys, blank values etc. and outputs easy to use dart fields.
 
 Supported file types: JSON, YAML.
 * Generation time validation
+* Get translations without `BuildContext`
 * Safe Arguments
 * Supported file types: JSON, YAML
 
@@ -166,7 +167,9 @@ Strings.welcomeMessage('Marcin', '3');
 ```
 ***Note:** These arguments are required - The compiler will force you to pass these arguments.*
 
-You can use argument with given number as much as you want, example:
+You can also get args translation without applying them with `getRaw()` method.
+
+Argument with given number can be used as much as you want, example:
 ```json
 {
   "distance" : "Traveled: {2} {1} - Distance: {3} {1}"
@@ -195,6 +198,13 @@ auto_localized offers some configuration options for validation and code generat
 | `locales`              |       -       | list of `AutoLocalizedLocale` to associate language code (and optionally country code) with translations file. List can't be null or empty.                                                                                                                                                                                                                          |
 | `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
 | `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or contains only whitespaces. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
+
+### Current locale
+
+You can access the current locale with:
+```dart
+AutoLocalization.instance.locale;
+```
 
 ### Locale update callback
 

@@ -13,14 +13,16 @@ class AutoLocalization {
 
   static AutoLocalization _instance;
 
-  static AutoLocalization get instance => _instance ?? (_instance = AutoLocalization._());
+  static AutoLocalization get instance =>
+      _instance ?? (_instance = AutoLocalization._());
 
   AutoLocalization._();
 
   ///Updates locale, invokes locale change callbacks
   static void updateLocale(Locale locale) {
     instance.locale = locale;
-    instance._onLocaleUpdateCallbacks.forEach((element) => element.call(locale));
+    instance._onLocaleUpdateCallbacks
+        .forEach((element) => element.call(locale));
   }
 
   ///Adds the callback with updated [Locale] when [AutoLocalization]
@@ -34,5 +36,6 @@ class AutoLocalization {
     instance._onLocaleUpdateCallbacks.remove(onChange);
   }
 
-  static AutoLocalization of(BuildContext context) => Localizations.of<AutoLocalization>(context, AutoLocalization);
+  static AutoLocalization of(BuildContext context) =>
+      Localizations.of<AutoLocalization>(context, AutoLocalization);
 }
