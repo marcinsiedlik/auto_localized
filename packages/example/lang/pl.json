@@ -1,4 +1,5 @@
 {
   "welcome": "Witaj!",
-  "test_message": "To jest testowa wiadomość w języku Polskim"
+  "test_message": "To jest testowa wiadomość w języku Polskim",
+  "welcome_name": "Witaj {1}, {2}!"
 }

@@ -1,4 +1,5 @@
 {
   "welcome": "Ahoj!",
-  "test_message": "Toto je testovacia správa v Slovenčine"
+  "test_message": "Toto je testovacia správa v Slovenčine",
+  "welcome_name": "Ahoj {1}, {2}!"
 }

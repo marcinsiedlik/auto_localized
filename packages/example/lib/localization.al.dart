@@ -28,7 +28,22 @@ class AutoLocalizedData {
 }
 
 extension AutoLocalizedContextExtension on BuildContext {
-  String translate(LocalizedString string) => string.get(this);
+  String translate(
+    LocalizedString string, [
+    String arg1 = "",
+    String arg2 = "",
+    String arg3 = "",
+    String arg4 = "",
+    String arg5 = "",
+  ]) =>
+      string.when(
+        plain: (string) => string.get(this),
+        arg1: (string) => string.get(arg1, this),
+        arg2: (string) => string.get(arg1, arg2, this),
+        arg3: (string) => string.get(arg1, arg2, arg3, this),
+        arg4: (string) => string.get(arg1, arg2, arg3, arg4, this),
+        arg5: (string) => string.get(arg1, arg2, arg3, arg4, arg5, this),
+      );
 
   List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;
 
@@ -37,7 +52,7 @@ extension AutoLocalizedContextExtension on BuildContext {
 
 @immutable
 class Strings {
-  static const welcome = LocalizedString(
+  static const welcome = PlainLocalizedString(
     key: 'welcome',
     values: {
       'pl': '''Witaj!''',
@@ -46,12 +61,21 @@ class Strings {
     },
   );
 
-  static const testMessage = LocalizedString(
+  static const testMessage = PlainLocalizedString(
     key: 'test_message',
     values: {
       'pl': '''To jest testowa wiadomość w języku Polskim''',
       'en_US': '''This is a test message in English''',
       'sk': '''Toto je testovacia správa v Slovenčine''',
+    },
+  );
+
+  static const welcomeName = ArgLocalizedString2(
+    key: 'welcome_name',
+    values: {
+      'pl': '''Witaj {1}, {2}!''',
+      'en_US': '''Welcome {1}, {2}!''',
+      'sk': '''Ahoj {1}, {2}!''',
     },
   );
 }
