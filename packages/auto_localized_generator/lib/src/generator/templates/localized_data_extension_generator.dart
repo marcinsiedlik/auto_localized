@@ -4,9 +4,14 @@ class LocalizedDataExtensionGenerator implements CodeGenerator {
   @override
   String generate() {
     final buffer = StringBuffer()
-      ..writeln('extension AutoLocalizedContextExtension on BuildContext {')..writeln()..writeln(
-          _translateFunctionDefinition)..writeln()..writeln(_supportedLocalesDefinition)..writeln()..writeln(
-          _localizationsDelegatesDefinition)..writeln('}');
+      ..writeln('extension AutoLocalizedContextExtension on BuildContext {')
+      ..writeln()
+      ..writeln(_translateFunctionDefinition)
+      ..writeln()
+      ..writeln(_supportedLocalesDefinition)
+      ..writeln()
+      ..writeln(_localizationsDelegatesDefinition)
+      ..writeln('}');
 
     return buffer.toString();
   }
