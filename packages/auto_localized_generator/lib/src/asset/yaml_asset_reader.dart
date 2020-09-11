@@ -18,9 +18,14 @@ class YamlAssetReader {
     try {
       final yaml = await loadYaml(yamlString) as YamlMap;
 
+      if (yaml == null) {
+        return <String, String>{};
+      }
+
       return yaml.map((dynamic key, dynamic value) {
         if (key == null || value == null) {
-          throw TranslationValueInvalidException(assetId.path, key.toString(), value.toString());
+          throw TranslationValueInvalidException(
+              assetId.path, key.toString(), value.toString());
         }
         return MapEntry(key.toString(), value.toString());
       });

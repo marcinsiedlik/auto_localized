@@ -19,9 +19,13 @@ class JsonAssetReader {
     try {
       final json = await jsonDecode(stringJson) as Map<String, dynamic>;
 
+      if (json == null) {
+        return <String, String>{};
+      }
       return json.map((key, dynamic value) {
         if (key == null || value == null) {
-          throw TranslationValueInvalidException(assetId.path, key, value.toString());
+          throw TranslationValueInvalidException(
+              assetId.path, key, value.toString());
         }
         return MapEntry(key, value.toString());
       });
