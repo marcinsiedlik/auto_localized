@@ -1,13 +1,13 @@
 name: auto_localized_generator
 description: Code generator for auto_localized, runtime-safe Flutter localization.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/marcinsiedlik/auto_localized
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  auto_localized: ^0.3.0
+  auto_localized: ^0.3.1
   build: ^1.3.0
   source_gen: ^0.9.6
   analyzer: ">=0.39.14 <0.41.0"

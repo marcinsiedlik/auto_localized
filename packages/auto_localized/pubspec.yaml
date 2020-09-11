@@ -1,6 +1,6 @@
 name: auto_localized
 description: Easy to use runtime-safe Flutter app localization tool using code generation.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/marcinsiedlik/auto_localized
 
 environment:
