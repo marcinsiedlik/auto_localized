@@ -10,4 +10,3 @@ export 'package:auto_localized/src/string/arg_localized_string_5.dart';
 export 'package:auto_localized/src/string/base/localized_string.dart';
 export 'package:auto_localized/src/string/plain_localized_string.dart';
 export 'package:auto_localized/src/widget/auto_localized_app.dart';
-export 'package:flutter_localizations/flutter_localizations.dart';

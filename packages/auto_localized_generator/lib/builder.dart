@@ -2,7 +2,7 @@ import 'package:auto_localized/annotations.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
-import 'auto_localized_generator.dart';
+import 'src/auto_localized_generator.dart';
 
 ///Builder definition for [AutoLocalized] annotation.
 ///Generates standalone dart file with `.al.dart` extension.
