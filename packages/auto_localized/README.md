@@ -93,10 +93,10 @@ import 'package:auto_localized/annotations.dart';
     ),
   ],
 )
-class _$Strings {}
+class $Strings {}
 ```
 
-***Important:** path to translation file must be relative. Class have to start with `_$`. 
+***Important:** path to translation file must be relative. Class name have to start with `$`. 
 Name of that class will be used as name of translation container class - for the example above it will be: `Strings`.*
 
 ### Generation

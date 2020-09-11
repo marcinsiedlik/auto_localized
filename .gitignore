@@ -1,3 +1,6 @@
+# Locale example
+local_example/
+
 # Generated Files
 *.g.dart
 *.gr.dart

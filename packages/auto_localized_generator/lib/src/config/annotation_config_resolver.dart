@@ -43,19 +43,15 @@ class AnnotationConfigResolver {
       message: '${_element.name} is not a class element',
     );
     _throwSourceErrorIf(
-      condition: () => !_element.isPrivate,
-      message: '${_element.name} is just dummy class for annotation and it should be private',
-    );
-    _throwSourceErrorIf(
-      condition: () => _element.name.length <= 2,
+      condition: () => _element.name.length <= 1,
       message: '${_element.name} is too short',
     );
     _throwSourceErrorIf(
-      condition: () => _element.name.substring(0, 2) != '_\$',
-      message: '${_element.name} class name need to begin with "_\$ signs"',
+      condition: () => _element.name.substring(0, 1) != '\$',
+      message: '${_element.name} class name need to begin with "\$ sign"',
     );
 
-    return _element.name.substring(2);
+    return _element.name.substring(1);
   }
 
   bool _resolveConvertToCamelCase() {
