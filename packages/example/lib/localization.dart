@@ -19,4 +19,4 @@ import 'package:auto_localized/annotations.dart';
     ),
   ],
 )
-class _$Strings {}
+class $Strings {}

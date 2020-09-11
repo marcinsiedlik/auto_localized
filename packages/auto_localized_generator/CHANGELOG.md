@@ -1,3 +1,9 @@
+## [0.3.1] Breaking Change
+
+* Class name now have to start with `$` instead of `_$` (fix analyzer issues)
+* Fix generation error for empty JSON/YAML file
+* Fix linter issues
+
 ## [0.3.0] Breaking Change
 
 * Add Safe Arguments supports.
