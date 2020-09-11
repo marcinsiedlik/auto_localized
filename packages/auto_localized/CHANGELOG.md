@@ -1,3 +1,12 @@
+## [0.4.2]
+
+* Fix forbidden dependency issue
+
+## [0.4.0]
+
+* Move `flutter_localizations` export to separate file (Documentation cleanup)
+* Hide unnecessary api in generator
+
 ## [0.3.1] Breaking Change
 
 * Class name now have to start with `$` instead of `_$` (fix analyzer issues)
