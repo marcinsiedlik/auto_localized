@@ -36,7 +36,10 @@ class AnnotationConfig {
           locales == other.locales;
 
   @override
-  int get hashCode => convertStringsToCamelCase.hashCode ^ stringsClassName.hashCode ^ locales.hashCode;
+  int get hashCode =>
+      convertStringsToCamelCase.hashCode ^
+      stringsClassName.hashCode ^
+      locales.hashCode;
 
   @override
   String toString() => 'AnnotationConfig{'

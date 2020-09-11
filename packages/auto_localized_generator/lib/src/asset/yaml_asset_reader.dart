@@ -14,7 +14,8 @@ class YamlAssetReader {
     return _decodeYamlToMap(loaded, assetId);
   }
 
-  Future<Map<String, String>> _decodeYamlToMap(String yamlString, AssetId assetId) async {
+  Future<Map<String, String>> _decodeYamlToMap(
+      String yamlString, AssetId assetId) async {
     try {
       final yaml = await loadYaml(yamlString) as YamlMap;
 

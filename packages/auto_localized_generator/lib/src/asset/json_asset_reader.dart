@@ -15,7 +15,8 @@ class JsonAssetReader {
     return _decodeJsonToMap(loaded, assetId);
   }
 
-  Future<Map<String, String>> _decodeJsonToMap(String stringJson, AssetId assetId) async {
+  Future<Map<String, String>> _decodeJsonToMap(
+      String stringJson, AssetId assetId) async {
     try {
       final json = await jsonDecode(stringJson) as Map<String, dynamic>;
 

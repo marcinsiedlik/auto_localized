@@ -9,7 +9,8 @@ class LocalizedString {
 
   const LocalizedString(this.key, this.type, this.values);
 
-  factory LocalizedString.fromMutable(MutableLocalizedString mutable) => LocalizedString(
+  factory LocalizedString.fromMutable(MutableLocalizedString mutable) =>
+      LocalizedString(
         mutable.key,
         mutable.type,
         Map.unmodifiable(mutable.values),
@@ -18,11 +19,11 @@ class LocalizedString {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LocalizedString &&
-              runtimeType == other.runtimeType &&
-              key == other.key &&
-              type == other.type &&
-              values == other.values;
+      other is LocalizedString &&
+          runtimeType == other.runtimeType &&
+          key == other.key &&
+          type == other.type &&
+          values == other.values;
 
   @override
   int get hashCode => key.hashCode ^ type.hashCode ^ values.hashCode;

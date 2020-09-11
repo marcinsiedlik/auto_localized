@@ -39,7 +39,8 @@ class LocalizedDataGenerator implements CodeGenerator {
     return buffer.toString();
   }
 
-  String _generateDelegateDeclaration() => 'static const delegate = AutoLocalizationDelegate(supportedLocales);\n';
+  String _generateDelegateDeclaration() =>
+      'static const delegate = AutoLocalizationDelegate(supportedLocales);\n';
 
   String _generateLocalizationsDelegates() {
     final buffer = StringBuffer();

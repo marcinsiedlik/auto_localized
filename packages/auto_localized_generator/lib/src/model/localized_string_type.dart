@@ -13,11 +13,13 @@ abstract class LocalizedStringType {
     return const PlainLocalizedStringType();
   }
 
-  factory LocalizedStringType.resolveFromValues(Iterable<String> values) => values
-      .map((e) => LocalizedStringType.resolveFromValue(e))
-      .reduce((value, element) => value = value.getHigher(element));
+  factory LocalizedStringType.resolveFromValues(Iterable<String> values) =>
+      values
+          .map((e) => LocalizedStringType.resolveFromValue(e))
+          .reduce((value, element) => value = value.getHigher(element));
 
-  LocalizedStringType getHigher(LocalizedStringType other) => id >= other.id ? this : other;
+  LocalizedStringType getHigher(LocalizedStringType other) =>
+      id >= other.id ? this : other;
 
   T when<T>({
     T Function(PlainLocalizedStringType) plain,
@@ -45,7 +47,10 @@ abstract class LocalizedStringType {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LocalizedStringType && runtimeType == other.runtimeType && id == other.id && name == other.name;
+      other is LocalizedStringType &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name;
 
   @override
   int get hashCode => id.hashCode ^ name.hashCode;

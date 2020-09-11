@@ -5,7 +5,8 @@ class TranslationArgsBadOrderException implements Exception {
   final String invalidInKey;
   final String invalidValue;
 
-  const TranslationArgsBadOrderException(this.localeInfo, this.invalidInKey, this.invalidValue);
+  const TranslationArgsBadOrderException(
+      this.localeInfo, this.invalidInKey, this.invalidValue);
 
   @override
   String toString() => 'Error while analyzing translation file for locale: '

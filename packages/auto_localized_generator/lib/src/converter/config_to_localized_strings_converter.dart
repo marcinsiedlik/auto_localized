@@ -10,7 +10,9 @@ class ConfigToLocalizedStringsConverter {
     //Use keys of the first locale. After validation in
     //AnnotationConfigValidator it is certain that keys are identical
     final translationKeys = config.locales.first.translations.keys;
-    final strings = translationKeys.map((key) => MutableLocalizedString.empty(key)).toList();
+    final strings = translationKeys
+        .map((key) => MutableLocalizedString.empty(key))
+        .toList();
 
     //Populate localized strings with config locales values
     config.locales.forEach((locale) {
@@ -24,6 +26,8 @@ class ConfigToLocalizedStringsConverter {
       string.type = LocalizedStringType.resolveFromValues(string.values.values);
     });
 
-    return strings.map((mutable) => LocalizedString.fromMutable(mutable)).toList();
+    return strings
+        .map((mutable) => LocalizedString.fromMutable(mutable))
+        .toList();
   }
 }

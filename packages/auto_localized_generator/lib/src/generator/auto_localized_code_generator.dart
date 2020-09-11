@@ -9,7 +9,8 @@ import 'package:auto_localized_generator/src/model/localized_string.dart';
 class AutoLocalizedCodeGenerator {
   final List<CodeGenerator> _generators;
 
-  AutoLocalizedCodeGenerator(AnnotationConfig config, List<LocalizedString> strings)
+  AutoLocalizedCodeGenerator(
+      AnnotationConfig config, List<LocalizedString> strings)
       : _generators = [
           ImportsGenerator(),
           LocalizedDataGenerator(config.locales),

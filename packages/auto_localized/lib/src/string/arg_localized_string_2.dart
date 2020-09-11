@@ -24,6 +24,8 @@ class ArgLocalizedString2 extends LocalizedString {
       "Arguments for localized strings can't be null."
       " Occurred in key: $key",
     );
-    return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg1).replaceAll(LocalizedStringArgs.arg2, arg2);
+    return getRaw(context)
+        .replaceAll(LocalizedStringArgs.arg1, arg1)
+        .replaceAll(LocalizedStringArgs.arg2, arg2);
   }
 }

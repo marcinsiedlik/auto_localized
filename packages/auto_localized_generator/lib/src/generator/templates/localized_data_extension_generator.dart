@@ -35,7 +35,8 @@ class LocalizedDataExtensionGenerator implements CodeGenerator {
       );
   ''';
 
-  String get _supportedLocalesDefinition => 'List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;';
+  String get _supportedLocalesDefinition =>
+      'List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;';
 
   String get _localizationsDelegatesDefinition =>
       'List<LocalizationsDelegate> get localizationsDelegates => AutoLocalizedData.localizationsDelegates;';

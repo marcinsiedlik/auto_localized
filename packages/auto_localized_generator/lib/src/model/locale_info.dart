@@ -2,7 +2,8 @@ class LocaleInfo {
   final String languageCode;
   final String countryCode;
 
-  const LocaleInfo(this.languageCode, this.countryCode) : assert(languageCode != null);
+  const LocaleInfo(this.languageCode, this.countryCode)
+      : assert(languageCode != null);
 
   @override
   bool operator ==(Object other) =>
@@ -16,5 +17,6 @@ class LocaleInfo {
   int get hashCode => languageCode.hashCode ^ countryCode.hashCode;
 
   @override
-  String toString() => languageCode + (countryCode != null ? '_$countryCode' : '');
+  String toString() =>
+      languageCode + (countryCode != null ? '_$countryCode' : '');
 }

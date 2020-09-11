@@ -25,7 +25,8 @@ class AnnotationConfigValidator {
     }
   }
 
-  void _compareTwoLocalesKeys(AnnotationConfigLocale first, AnnotationConfigLocale second) {
+  void _compareTwoLocalesKeys(
+      AnnotationConfigLocale first, AnnotationConfigLocale second) {
     first.translations.keys.forEach((key) {
       if (!second.translations.containsKey(key)) {
         throw MissingTranslationKeyException(first, second, key);
@@ -43,14 +44,16 @@ class AnnotationConfigValidator {
     if (config.onBlankValueStrategy == OnBlankValueStrategy.ignore) {
       return;
     }
-    final raiseError = config.onBlankValueStrategy == OnBlankValueStrategy.error;
+    final raiseError =
+        config.onBlankValueStrategy == OnBlankValueStrategy.error;
 
     config.locales.forEach((locale) {
       _assureLocaleValuesNotBlank(locale, raiseError);
     });
   }
 
-  void _assureLocaleValuesNotBlank(AnnotationConfigLocale locale, bool raiseError) {
+  void _assureLocaleValuesNotBlank(AnnotationConfigLocale locale,
+      bool raiseError) {
     locale.translations.forEach((key, value) {
       if (value.isBlank) {
         if (raiseError) {
@@ -58,7 +61,8 @@ class AnnotationConfigValidator {
         } else {
           Logger.warning(
             'Translation value for key: "$key" is blank or whitespaces only\n'
-            'Found in translation file for locale: "${locale.info.toString()}""',
+                'Found in translation file for locale: "${locale.info
+                .toString()}""',
           );
         }
       }

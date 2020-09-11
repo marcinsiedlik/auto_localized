@@ -1,7 +1,8 @@
 import 'dart:io';
 
 class Logger {
-  static const _separator = "*******************************************************************************";
+  static const _separator =
+      "*******************************************************************************";
   static const _generatorHeader = 'LocalizationsGenerator::';
 
   static void debug(String message, {bool withSeparator = true}) {

@@ -23,7 +23,11 @@ class ArgLocalizedString5 extends LocalizedString {
     BuildContext context,
   ]) {
     assert(
-      arg1 != null && arg2 != null && arg3 != null && arg4 != null && arg5 != null,
+      arg1 != null &&
+          arg2 != null &&
+          arg3 != null &&
+          arg4 != null &&
+          arg5 != null,
       "Arguments for localized strings can't be null."
       " Occurred in key: $key",
     );

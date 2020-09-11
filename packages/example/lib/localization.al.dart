@@ -47,7 +47,8 @@ extension AutoLocalizedContextExtension on BuildContext {
 
   List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;
 
-  List<LocalizationsDelegate> get localizationsDelegates => AutoLocalizedData.localizationsDelegates;
+  List<LocalizationsDelegate> get localizationsDelegates =>
+      AutoLocalizedData.localizationsDelegates;
 }
 
 @immutable

@@ -5,7 +5,8 @@ class MissingTranslationKeyException implements Exception {
   final AnnotationConfigLocale missingInLocale;
   final String missingKey;
 
-  const MissingTranslationKeyException(this.locale, this.missingInLocale, this.missingKey);
+  const MissingTranslationKeyException(
+      this.locale, this.missingInLocale, this.missingKey);
 
   @override
   String toString() => 'An key: "$missingKey" is found in translation file '
