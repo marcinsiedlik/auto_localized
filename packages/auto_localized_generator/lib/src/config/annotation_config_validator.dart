@@ -52,8 +52,10 @@ class AnnotationConfigValidator {
     });
   }
 
-  void _assureLocaleValuesNotBlank(AnnotationConfigLocale locale,
-      bool raiseError) {
+  void _assureLocaleValuesNotBlank(
+    AnnotationConfigLocale locale,
+    bool raiseError,
+  ) {
     locale.translations.forEach((key, value) {
       if (value.isBlank) {
         if (raiseError) {
@@ -61,8 +63,7 @@ class AnnotationConfigValidator {
         } else {
           Logger.warning(
             'Translation value for key: "$key" is blank or whitespaces only\n'
-                'Found in translation file for locale: "${locale.info
-                .toString()}""',
+            'Found in translation file for locale: "${locale.info.toString()}""',
           );
         }
       }

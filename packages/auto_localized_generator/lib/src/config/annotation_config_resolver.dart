@@ -76,8 +76,7 @@ class AnnotationConfigResolver {
     _throwSourceErrorIf(
       condition: () => accessor == null,
       message: 'Unexpected error occurred while inspecting '
-          '"${AnnotationConfig.onBlankValueStrategyField}" in ${_element
-          .name}.',
+          '"${AnnotationConfig.onBlankValueStrategyField}" in ${_element.name}.',
     );
     return AnnotationConfig.onBlankValueStrategyStringMap[accessor];
   }
