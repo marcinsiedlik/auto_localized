@@ -47,9 +47,31 @@ class AutoLocalized {
   /// always throw an [Exception]
   final OnBlankValueStrategy onBlankValueStrategy;
 
+  /// When set to true apart from fields creates
+  /// additional getter methods for generated fields.
+  /// This gives you the additional option of getting strings.
+  ///
+  /// Example:
+  /// For given key:
+  /// ```json
+  /// {
+  ///   "test_message": "This is a test message"
+  /// }
+  /// ```
+  /// You can get value with:
+  /// ```dart
+  /// //filed with get
+  /// Strings.testMessage.get();
+  /// //method getter
+  /// Strings.getTestMessage();
+  /// ```
+  ///
+  final bool generateGetterMethods;
+
   const AutoLocalized({
     this.locales,
     this.convertToCamelCase = true,
     this.onBlankValueStrategy = OnBlankValueStrategy.error,
+    this.generateGetterMethods = true,
   }) : assert(locales != null);
 }

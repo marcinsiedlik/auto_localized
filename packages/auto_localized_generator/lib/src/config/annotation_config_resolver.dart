@@ -22,12 +22,14 @@ class AnnotationConfigResolver {
     final className = _resolveClassName();
     final convertToCamelCase = _resolveConvertToCamelCase();
     final onBlankValueStrategy = _resolveOnBlankValueStrategy();
+    final generateGetterMethods = _resolveGenerateGetterMethods();
     final locales = await _resolveLocales();
 
     final config = AnnotationConfig(
       className,
       convertToCamelCase,
       onBlankValueStrategy,
+      generateGetterMethods,
       locales,
     );
 
@@ -81,12 +83,27 @@ class AnnotationConfigResolver {
     return AnnotationConfig.onBlankValueStrategyStringMap[accessor];
   }
 
+  bool _resolveGenerateGetterMethods() {
+    final generateGetters = _annotation
+        .peek(AnnotationConfig.generateGetterMethodsField)
+        ?.boolValue;
+    _throwSourceErrorIf(
+      condition: () => generateGetters == null,
+      message: 'Unexpected error occurred while inspecting '
+          '"${AnnotationConfig.generateGetterMethodsField}" in ${_element.name}. '
+          'Inspected value equals null.',
+    );
+    return _annotation
+        .peek(AnnotationConfig.generateGetterMethodsField)
+        ?.boolValue;
+  }
+
   Future<List<AnnotationConfigLocale>> _resolveLocales() async {
     final locales = _annotation.peek(AnnotationConfig.localesField)?.listValue;
     _throwSourceErrorIf(
       condition: () => locales == null,
       message:
-      'Unexpected error occurred while inspecting locales in ${_element.name}. '
+          'Unexpected error occurred while inspecting locales in ${_element.name}. '
           'Inspected value equals null.',
     );
     _throwSourceErrorIf(

@@ -7,6 +7,7 @@ class AnnotationConfig {
   static const localesField = 'locales';
   static const convertToCamelCaseField = 'convertToCamelCase';
   static const onBlankValueStrategyField = 'onBlankValueStrategy';
+  static const generateGetterMethodsField = 'generateGetterMethods';
 
   static const onBlankValueStrategyStringMap = {
     'OnBlankValueStrategy.ignore': OnBlankValueStrategy.ignore,
@@ -17,12 +18,14 @@ class AnnotationConfig {
   final String stringsClassName;
   final bool convertStringsToCamelCase;
   final OnBlankValueStrategy onBlankValueStrategy;
+  final bool generateGetterMethods;
   final List<AnnotationConfigLocale> locales;
 
   const AnnotationConfig(
     this.stringsClassName,
     this.convertStringsToCamelCase,
     this.onBlankValueStrategy,
+    this.generateGetterMethods,
     this.locales,
   );
 
