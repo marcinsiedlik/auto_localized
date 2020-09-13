@@ -2,6 +2,7 @@ import 'package:auto_localized/annotations.dart';
 
 @AutoLocalized(
   convertToCamelCase: true,
+  generateGetterMethods: true,
   onBlankValueStrategy: OnBlankValueStrategy.error,
   locales: [
     AutoLocalizedLocale(

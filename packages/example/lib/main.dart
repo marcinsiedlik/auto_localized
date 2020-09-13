@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          Strings.testMessage.get(),
+          Strings.getTestMessage(),
         ),
       ),
     );

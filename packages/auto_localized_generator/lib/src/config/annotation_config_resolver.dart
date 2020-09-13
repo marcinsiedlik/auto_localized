@@ -129,8 +129,7 @@ class AnnotationConfigResolver {
     _throwSourceErrorIf(
       condition: () => languageCode.isNullOrBlank || filePath.isNullOrBlank,
       message: '''
-    "${AnnotationConfigLocale.languageCodeField}" and "${AnnotationConfigLocale
-          .translationsFilePathField}"
+    "${AnnotationConfigLocale.languageCodeField}" and "${AnnotationConfigLocale.translationsFilePathField}"
     in auto localized locale declaration can't be null or blank
     ''',
     );

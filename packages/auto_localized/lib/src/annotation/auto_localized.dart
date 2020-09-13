@@ -2,7 +2,6 @@
 
 import 'package:auto_localized/src/annotation/auto_localized_locale.dart';
 import 'package:auto_localized/src/annotation/on_blank_value_strategy.dart';
-import 'package:flutter/material.dart';
 
 ///AutoLocalized generator config annotation class
 class AutoLocalized {
@@ -50,7 +49,7 @@ class AutoLocalized {
 
   /// When set to true apart from fields creates
   /// additional getter methods for generated fields
-  /// and extension methods on [BuildContext].
+  /// and extension methods on `BuildContext`.
   /// This gives you the additional ways of getting strings.
   ///
   /// Example:

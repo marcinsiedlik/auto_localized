@@ -76,13 +76,13 @@ abstract class LocalizedStringType {
 class PlainLocalizedStringType extends LocalizedStringType {
   const PlainLocalizedStringType()
       : super(
-    0,
-    'PlainLocalizedString',
-    '([BuildContext context])',
-    '()',
-    '(context)',
-    '(this)',
-  );
+          0,
+          'PlainLocalizedString',
+          '([BuildContext context])',
+          '()',
+          '(context)',
+          '(this)',
+        );
 }
 
 class ArgLocalizedStringType1 extends LocalizedStringType {
@@ -92,8 +92,8 @@ class ArgLocalizedStringType1 extends LocalizedStringType {
     'ArgLocalizedString1',
     '(String arg, [BuildContext context])',
     '(String arg)',
-    '(arg1, context)',
-    '(arg1, this)',
+    '(arg, context)',
+    '(arg, this)',
   );
 }
 

@@ -8,6 +8,7 @@
 import 'package:auto_localized/auto_localized.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 @immutable
 class AutoLocalizedData {
@@ -28,6 +29,11 @@ class AutoLocalizedData {
 }
 
 extension AutoLocalizedContextExtension on BuildContext {
+  List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;
+
+  List<LocalizationsDelegate> get localizationsDelegates =>
+      AutoLocalizedData.localizationsDelegates;
+
   String translate(
     LocalizedString string, [
     String arg1 = "",
@@ -45,10 +51,12 @@ extension AutoLocalizedContextExtension on BuildContext {
         arg5: (string) => string.get(arg1, arg2, arg3, arg4, arg5, this),
       );
 
-  List<Locale> get supportedLocales => AutoLocalizedData.supportedLocales;
+  String getWelcome() => Strings.welcome.get(this);
 
-  List<LocalizationsDelegate> get localizationsDelegates =>
-      AutoLocalizedData.localizationsDelegates;
+  String getTestMessage() => Strings.testMessage.get(this);
+
+  String getWelcomeName(String arg1, String arg2) =>
+      Strings.welcomeName.get(arg1, arg2, this);
 }
 
 @immutable
@@ -79,4 +87,15 @@ class Strings {
       'sk': '''Ahoj {1}, {2}!''',
     },
   );
+
+  static String getWelcome([BuildContext context]) => welcome.get(context);
+
+  static String getTestMessage([BuildContext context]) =>
+      testMessage.get(context);
+
+  static String getWelcomeName(String arg1,
+      String arg2, [
+        BuildContext context,
+      ]) =>
+      welcomeName.get(arg1, arg2, context);
 }

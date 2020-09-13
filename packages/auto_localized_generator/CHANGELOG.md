@@ -1,3 +1,16 @@
+## [0.5.2]
+
+* Fix minor `BuildContext` extension typo
+
+## [0.5.1]
+
+* Update example
+* Minor documentation fix
+
+## [0.5.0]
+
+* Add option to get translations with getter methods - `generateGetterMethods` annotation config field
+
 ## [0.4.2]
 
 * Fix forbidden dependency issue
