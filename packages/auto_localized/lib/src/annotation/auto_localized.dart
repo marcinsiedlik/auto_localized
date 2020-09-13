@@ -51,7 +51,7 @@ class AutoLocalized {
   /// When set to true apart from fields creates
   /// additional getter methods for generated fields
   /// and extension methods on [BuildContext].
-  /// This gives you the additional option of getting strings.
+  /// This gives you the additional ways of getting strings.
   ///
   /// Example:
   /// For given key:

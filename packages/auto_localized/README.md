@@ -2,7 +2,7 @@
 
 auto_localized is simplifying Flutter localization by using code generation.
 This approach has many advantages such as runtime-safety and better performance. The generator checks translation files for 
-missing keys, blank values etc. and outputs easy to use dart fields. 
+missing keys, blank values etc. and outputs easy to use dart fields (or methods). 
 
 Supported file types: JSON, YAML.
 * Generation time validation
@@ -145,6 +145,18 @@ Text(
   context.translate(Strings.welcome),
 )
 ```
+If you enable `generateGetterMethods` in annotation config you will get two additional ways:
+```dart
+//getter method
+Text(
+  Strings.getWelcome();
+)
+
+//BuildContext extension
+Text(
+  context.getWelcome();
+)
+```
 
 ### Example
 
@@ -175,18 +187,26 @@ Argument with given number can be used as much as you want, example:
   "distance" : "Traveled: {2} {1} - Distance: {3} {1}"
 }
 ``` 
-Result: 
+You can get value for arg string with: 
 ```dart
-Strings.distance('km', '12', '30');
+Strings.distance.get('km', '12', '30');
+```
+If you enable `generateGetterMethods` in annotation config you will get two additional ways:
+```dart
+//getter method
+Strings.getDistance('km', '12', '30');
+
+//BuildContext extension
+context.getDistance('km', '12', '30');
 ```
 
-You can get args translations with `BuildContext` extension method:
+There is also regular translate `BuildContext` extension method:
 ```dart
 Text(
   context.translate(Strings.welcomeMessage, 'Marcin', '3'),
 )
 ```
-This is not recommended method, because Dart [does not support method overloading](https://github.com/dart-lang/language/issues/1122).
+This last method is unrecommended, because Dart [does not support method overloading](https://github.com/dart-lang/language/issues/1122).
 Compiler can't force you to pass all required arguments, default value for missing argument is `""`.
 
 ### Annotation configuration
@@ -195,7 +215,8 @@ auto_localized offers some configuration options for validation and code generat
 
 | Option                 | Default value | Description |
 |------------------------|:-------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `locales`              |       -       | list of `AutoLocalizedLocale` to associate language code (and optionally country code) with translations file. List can't be null or empty.                                                                                                                                                                                                                          |
+| `locales`              |       -       | List of `AutoLocalizedLocale` to associate language code (and optionally country code) with translations file. List can't be null or empty.                                                                                                                                                                                                                          |
+| `generateGetterMethods`|     `false`   | When set to true apart from fields creates additional getter methods for generated fields and extension methods on `BuildContext`. This gives you the additional ways of getting strings.                                                                                                                                                                                                                     |
 | `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
 | `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or contains only whitespaces. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
 
