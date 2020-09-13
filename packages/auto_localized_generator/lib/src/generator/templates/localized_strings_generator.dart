@@ -12,11 +12,14 @@ class LocalizedStringsGenerator implements CodeGenerator {
 
   @override
   String generate() {
-    final buffer = StringBuffer()
-      ..writeln('@immutable')
-      ..writeln('class ${_config.stringsClassName} {')
-      ..writeln(_generateLocalizedStringDefinitions())
-      ..writeln('}');
+    final buffer = StringBuffer();
+    buffer.writeln('@immutable');
+    buffer.writeln('class ${_config.stringsClassName} {');
+    buffer.writeln(_generateLocalizedStringDefinitions());
+    if (_config.generateGetterMethods) {
+      buffer.writeln(_generateLocalizedStringGetters());
+    }
+    buffer.writeln('}');
 
     return buffer.toString();
   }
@@ -26,6 +29,26 @@ class LocalizedStringsGenerator implements CodeGenerator {
     _strings.forEach((string) {
       buffer.writeln(_generateLocalizedStringDefinition(string));
     });
+    return buffer.toString();
+  }
+
+  String _generateLocalizedStringGetters() {
+    final buffer = StringBuffer();
+    _strings.forEach((string) {
+      buffer.writeln(_generateLocalizedStringGetterMethod(string));
+    });
+    return buffer.toString();
+  }
+
+  String _generateLocalizedStringGetterMethod(LocalizedString string) {
+    final name =
+        _config.convertStringsToCamelCase ? string.key.camelCase : string.key;
+    final buffer = StringBuffer()
+      ..write(
+          "static String get${string.key.pascalCase}${string.type.getterParams}")
+      ..write(" => ")
+      ..writeln("$name.get${string.type.getterArgs};");
+
     return buffer.toString();
   }
 

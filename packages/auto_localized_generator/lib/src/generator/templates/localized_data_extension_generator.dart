@@ -1,17 +1,30 @@
+import 'package:auto_localized_generator/src/config/model/annotation_config.dart';
 import 'package:auto_localized_generator/src/generator/templates/code_generator.dart';
+import 'package:auto_localized_generator/src/model/localized_string.dart';
+import 'package:recase/recase.dart';
 
 class LocalizedDataExtensionGenerator implements CodeGenerator {
+  final AnnotationConfig _config;
+  final List<LocalizedString> _strings;
+
+  const LocalizedDataExtensionGenerator(this._config, this._strings);
+
   @override
   String generate() {
-    final buffer = StringBuffer()
-      ..writeln('extension AutoLocalizedContextExtension on BuildContext {')
-      ..writeln()
-      ..writeln(_translateFunctionDefinition)
-      ..writeln()
-      ..writeln(_supportedLocalesDefinition)
-      ..writeln()
-      ..writeln(_localizationsDelegatesDefinition)
-      ..writeln('}');
+    final buffer = StringBuffer();
+    buffer.writeln('extension AutoLocalizedContextExtension on BuildContext {');
+    buffer.writeln();
+    buffer.writeln(_supportedLocalesDefinition);
+    buffer.writeln();
+    buffer.writeln(_localizationsDelegatesDefinition);
+    buffer.writeln();
+    buffer.writeln(_translateFunctionDefinition);
+    buffer.writeln();
+    if (_config.generateGetterMethods) {
+      buffer.writeln(_generateLocalizedStringGetters());
+      buffer.writeln();
+    }
+    buffer.writeln('}');
 
     return buffer.toString();
   }
@@ -40,4 +53,25 @@ class LocalizedDataExtensionGenerator implements CodeGenerator {
 
   String get _localizationsDelegatesDefinition =>
       'List<LocalizationsDelegate> get localizationsDelegates => AutoLocalizedData.localizationsDelegates;';
+
+  String _generateLocalizedStringGetters() {
+    final buffer = StringBuffer();
+    _strings.forEach((string) {
+      buffer.writeln(_generateLocalizedStringGetterMethod(string));
+    });
+    return buffer.toString();
+  }
+
+  String _generateLocalizedStringGetterMethod(LocalizedString string) {
+    final name =
+        _config.convertStringsToCamelCase ? string.key.camelCase : string.key;
+    final buffer = StringBuffer()
+      ..write(
+          "String get${string.key.pascalCase}${string.type.getterContextExtensionParams}")
+      ..write(" => ")
+      ..writeln(
+          "${_config.stringsClassName}.$name.get${string.type.getterContextExtensionArgs};");
+
+    return buffer.toString();
+  }
 }

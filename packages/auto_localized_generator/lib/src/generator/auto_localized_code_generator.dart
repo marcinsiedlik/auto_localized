@@ -10,11 +10,12 @@ class AutoLocalizedCodeGenerator {
   final List<CodeGenerator> _generators;
 
   AutoLocalizedCodeGenerator(
-      AnnotationConfig config, List<LocalizedString> strings)
-      : _generators = [
+    AnnotationConfig config,
+    List<LocalizedString> strings,
+  ) : _generators = [
           ImportsGenerator(),
           LocalizedDataGenerator(config.locales),
-          LocalizedDataExtensionGenerator(),
+          LocalizedDataExtensionGenerator(config, strings),
           LocalizedStringsGenerator(config, strings),
         ];
 

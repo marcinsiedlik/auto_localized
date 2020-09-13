@@ -2,6 +2,7 @@
 
 import 'package:auto_localized/src/annotation/auto_localized_locale.dart';
 import 'package:auto_localized/src/annotation/on_blank_value_strategy.dart';
+import 'package:flutter/material.dart';
 
 ///AutoLocalized generator config annotation class
 class AutoLocalized {
@@ -48,7 +49,8 @@ class AutoLocalized {
   final OnBlankValueStrategy onBlankValueStrategy;
 
   /// When set to true apart from fields creates
-  /// additional getter methods for generated fields.
+  /// additional getter methods for generated fields
+  /// and extension methods on [BuildContext].
   /// This gives you the additional option of getting strings.
   ///
   /// Example:
@@ -60,10 +62,12 @@ class AutoLocalized {
   /// ```
   /// You can get value with:
   /// ```dart
-  /// //filed with get
+  /// //field with get
   /// Strings.testMessage.get();
   /// //method getter
   /// Strings.getTestMessage();
+  /// //BuildContext extension method
+  /// context.getTestMessage();
   /// ```
   ///
   final bool generateGetterMethods;
@@ -72,6 +76,6 @@ class AutoLocalized {
     this.locales,
     this.convertToCamelCase = true,
     this.onBlankValueStrategy = OnBlankValueStrategy.error,
-    this.generateGetterMethods = true,
+    this.generateGetterMethods = false,
   }) : assert(locales != null);
 }
