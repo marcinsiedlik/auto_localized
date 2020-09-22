@@ -1,3 +1,8 @@
+## [0.6.0]
+
+* Add fromJson/toJson methods (compatibility with [json_serializable](https://pub.dev/packages/json_serializable), [freezed](https://pub.dev/packages/freezed) etc.)
+* Fix README.md minor error
+
 ## [0.5.2]
 
 * Fix minor `BuildContext` extension typo
