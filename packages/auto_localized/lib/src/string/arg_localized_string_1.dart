@@ -8,22 +8,37 @@ class ArgLocalizedString1 extends LocalizedString {
   const ArgLocalizedString1({
     String key,
     Map<String, String> values,
-  }) : super(key: key, values: values);
+  }) : super(1, key: key, values: values);
 
   ///Translates string by locale from given [context].
   ///You can get translation without passing context -
   ///then the last cached locale will be used.
   ///(Wrapping [MaterialApp] with [AutoLocalizedApp] is required)
   ///Returns value with given [arg] applied.
-  String get(
-    String arg, [
+  String get(String arg, [
     BuildContext context,
   ]) {
     assert(
-      arg != null,
-      "Arguments for localized strings can't be null."
-      " Occurred in key: $key",
+    arg != null,
+    "Arguments for localized strings can't be null."
+        " Occurred in key: $key",
     );
     return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg);
+  }
+
+  factory ArgLocalizedString1.fromJson(Map<String, dynamic> map) {
+    return ArgLocalizedString1(
+      key: map['key'] as String,
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'key': key,
+      'values': values,
+    };
   }
 }

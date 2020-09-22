@@ -7,7 +7,8 @@ analyzer:
     implicit-dynamic: false
 
   exclude:
-    - "**/*.g.dart"
-    - "**/*.gr.dart"
-    - "**/*.chopper.dart"
-    - "**/*.freezed.dart"
+    - "lib/**/*.g.dart"
+    - "lib/**/*.gr.dart"
+    - "lib/**/*.al.dart"
+    - "lib/**/*.chopper.dart"
+    - "lib/**/*.freezed.dart"

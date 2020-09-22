@@ -1,13 +1,15 @@
 import 'package:auto_localized/auto_localized.dart';
 import 'package:auto_localized/src/localization/auto_localization.dart';
+import 'package:auto_localized/src/string/type/localized_string_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 abstract class LocalizedString {
+  final int id;
   final String key;
   final Map<String, String> values;
 
-  const LocalizedString({@required this.key, @required this.values});
+  const LocalizedString(this.id, {@required this.key, @required this.values});
 
   ///Translates string by locale from given [context].
   ///You can get translation without passing context -
@@ -41,5 +43,30 @@ abstract class LocalizedString {
     } else {
       return arg5(this as ArgLocalizedString5);
     }
+  }
+
+  factory LocalizedString.fromJson(Map<String, dynamic> map) {
+    final key = map['key'] as String;
+
+    final translations = (map['values'] as Map<String, dynamic>)
+        .map((key, dynamic value) => MapEntry(key, value as String));
+
+    final type = LocalizedStringType.resolveFromValues(translations.values);
+
+    return type.when(
+      plain: (_) => PlainLocalizedString(key: key, values: translations),
+      arg1: (_) => ArgLocalizedString1(key: key, values: translations),
+      arg2: (_) => ArgLocalizedString2(key: key, values: translations),
+      arg3: (_) => ArgLocalizedString3(key: key, values: translations),
+      arg4: (_) => ArgLocalizedString4(key: key, values: translations),
+      arg5: (_) => ArgLocalizedString5(key: key, values: translations),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'key': key,
+      'values': values,
+    };
   }
 }

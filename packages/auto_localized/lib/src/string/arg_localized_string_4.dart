@@ -7,7 +7,7 @@ class ArgLocalizedString4 extends LocalizedString {
   const ArgLocalizedString4({
     String key,
     Map<String, String> values,
-  }) : super(key: key, values: values);
+  }) : super(4, key: key, values: values);
 
   ///Translates string by locale from given [context].
   ///You can get translation without passing context -
@@ -31,5 +31,21 @@ class ArgLocalizedString4 extends LocalizedString {
         .replaceAll(LocalizedStringArgs.arg2, arg2)
         .replaceAll(LocalizedStringArgs.arg3, arg3)
         .replaceAll(LocalizedStringArgs.arg4, arg4);
+  }
+
+  factory ArgLocalizedString4.fromJson(Map<String, dynamic> map) {
+    return ArgLocalizedString4(
+      key: map['key'] as String,
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'key': key,
+      'values': values,
+    };
   }
 }
