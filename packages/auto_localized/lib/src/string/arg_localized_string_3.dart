@@ -72,7 +72,8 @@ class ArgLocalizedString3 extends LocalizedString {
   factory ArgLocalizedString3.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString3(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 

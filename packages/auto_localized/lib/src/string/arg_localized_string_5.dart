@@ -23,7 +23,11 @@ class ArgLocalizedString5 extends LocalizedString {
     BuildContext context,
   ]) {
     assert(
-      arg1 != null && arg2 != null && arg3 != null && arg4 != null && arg5 != null,
+      arg1 != null &&
+          arg2 != null &&
+          arg3 != null &&
+          arg4 != null &&
+          arg5 != null,
       "Arguments for localized strings can't be null."
       " Occurred in key: $key",
     );
@@ -78,7 +82,8 @@ class ArgLocalizedString5 extends LocalizedString {
   factory ArgLocalizedString5.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString5(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 

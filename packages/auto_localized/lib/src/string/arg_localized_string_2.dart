@@ -24,7 +24,9 @@ class ArgLocalizedString2 extends LocalizedString {
       "Arguments for localized strings can't be null."
       " Occurred in key: $key",
     );
-    return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg1).replaceAll(LocalizedStringArgs.arg2, arg2);
+    return getRaw(context)
+        .replaceAll(LocalizedStringArgs.arg1, arg1)
+        .replaceAll(LocalizedStringArgs.arg2, arg2);
   }
 
   /// Translates string by locale like [get] method
@@ -67,7 +69,8 @@ class ArgLocalizedString2 extends LocalizedString {
   factory ArgLocalizedString2.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString2(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 

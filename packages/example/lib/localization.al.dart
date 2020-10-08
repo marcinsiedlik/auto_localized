@@ -93,9 +93,10 @@ class Strings {
   static String getTestMessage([BuildContext context]) =>
       testMessage.get(context);
 
-  static String getWelcomeName(String arg1,
-      String arg2, [
-        BuildContext context,
-      ]) =>
+  static String getWelcomeName(
+    String arg1,
+    String arg2, [
+    BuildContext context,
+  ]) =>
       welcomeName.get(arg1, arg2, context);
 }

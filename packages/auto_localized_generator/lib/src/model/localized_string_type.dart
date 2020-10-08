@@ -88,59 +88,59 @@ class PlainLocalizedStringType extends LocalizedStringType {
 class ArgLocalizedStringType1 extends LocalizedStringType {
   const ArgLocalizedStringType1()
       : super(
-    1,
-    'ArgLocalizedString1',
-    '(String arg, [BuildContext context])',
-    '(String arg)',
-    '(arg, context)',
-    '(arg, this)',
-  );
+          1,
+          'ArgLocalizedString1',
+          '(String arg, [BuildContext context])',
+          '(String arg)',
+          '(arg, context)',
+          '(arg, this)',
+        );
 }
 
 class ArgLocalizedStringType2 extends LocalizedStringType {
   const ArgLocalizedStringType2()
       : super(
-    2,
-    'ArgLocalizedString2',
-    '(String arg1, String arg2, [BuildContext context,])',
-    '(String arg1, String arg2)',
-    '(arg1, arg2, context)',
-    '(arg1, arg2, this)',
-  );
+          2,
+          'ArgLocalizedString2',
+          '(String arg1, String arg2, [BuildContext context,])',
+          '(String arg1, String arg2)',
+          '(arg1, arg2, context)',
+          '(arg1, arg2, this)',
+        );
 }
 
 class ArgLocalizedStringType3 extends LocalizedStringType {
   const ArgLocalizedStringType3()
       : super(
-    3,
-    'ArgLocalizedString3',
-    '(String arg1, String arg2, String arg3, [BuildContext context,])',
-    '(String arg1, String arg2, String arg3,)',
-    '(arg1, arg2, arg3, context)',
-    '(arg1, arg2, arg3, this)',
-  );
+          3,
+          'ArgLocalizedString3',
+          '(String arg1, String arg2, String arg3, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3,)',
+          '(arg1, arg2, arg3, context)',
+          '(arg1, arg2, arg3, this)',
+        );
 }
 
 class ArgLocalizedStringType4 extends LocalizedStringType {
   const ArgLocalizedStringType4()
       : super(
-    4,
-    'ArgLocalizedString4',
-    '(String arg1, String arg2, String arg3, String arg4, [BuildContext context,])',
-    '(String arg1, String arg2, String arg3, String arg4,)',
-    '(arg1, arg2, arg3, arg4, context)',
-    '(arg1, arg2, arg3, arg4, this)',
-  );
+          4,
+          'ArgLocalizedString4',
+          '(String arg1, String arg2, String arg3, String arg4, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3, String arg4,)',
+          '(arg1, arg2, arg3, arg4, context)',
+          '(arg1, arg2, arg3, arg4, this)',
+        );
 }
 
 class ArgLocalizedStringType5 extends LocalizedStringType {
   const ArgLocalizedStringType5()
       : super(
-    5,
-    'ArgLocalizedString5',
-    '(String arg1, String arg2, String arg3, String arg4, String arg5, [BuildContext context,])',
-    '(String arg1, String arg2, String arg3, String arg4, String arg5,)',
-    '(arg1, arg2, arg3, arg4, arg5, context)',
-    '(arg1, arg2, arg3, arg4, arg5, this)',
-  );
+          5,
+          'ArgLocalizedString5',
+          '(String arg1, String arg2, String arg3, String arg4, String arg5, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3, String arg4, String arg5,)',
+          '(arg1, arg2, arg3, arg4, arg5, context)',
+          '(arg1, arg2, arg3, arg4, arg5, this)',
+        );
 }

@@ -52,7 +52,8 @@ class PlainLocalizedString extends LocalizedString {
   factory PlainLocalizedString.fromJson(Map<String, dynamic> map) {
     return PlainLocalizedString(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>)
+          .map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 
