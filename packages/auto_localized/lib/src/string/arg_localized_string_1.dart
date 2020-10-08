@@ -15,22 +15,56 @@ class ArgLocalizedString1 extends LocalizedString {
   ///then the last cached locale will be used.
   ///(Wrapping [MaterialApp] with [AutoLocalizedApp] is required)
   ///Returns value with given [arg] applied.
-  String get(String arg, [
+  String get(
+    String arg, [
     BuildContext context,
   ]) {
     assert(
-    arg != null,
-    "Arguments for localized strings can't be null."
-        " Occurred in key: $key",
+      arg != null,
+      "Arguments for localized strings can't be null."
+      " Occurred in key: $key",
     );
     return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg);
   }
 
+  Widget text({
+    @required String arg,
+    Key key,
+    BuildContext context,
+    TextStyle style,
+    StrutStyle strutStyle,
+    TextAlign textAlign,
+    TextDirection textDirection,
+    Locale locale,
+    bool softWrap,
+    TextOverflow overflow,
+    double textScaleFactor,
+    int maxLines,
+    String semanticsLabel,
+    TextWidthBasis textWidthBasis,
+    TextHeightBehavior textHeightBehavior,
+  }) =>
+      Text(
+        get(arg, context),
+        key: key,
+        style: style,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaleFactor: textScaleFactor,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+      );
+
   factory ArgLocalizedString1.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString1(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>)
-          .map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 

@@ -23,11 +23,7 @@ class ArgLocalizedString5 extends LocalizedString {
     BuildContext context,
   ]) {
     assert(
-      arg1 != null &&
-          arg2 != null &&
-          arg3 != null &&
-          arg4 != null &&
-          arg5 != null,
+      arg1 != null && arg2 != null && arg3 != null && arg4 != null && arg5 != null,
       "Arguments for localized strings can't be null."
       " Occurred in key: $key",
     );
@@ -39,11 +35,48 @@ class ArgLocalizedString5 extends LocalizedString {
         .replaceAll(LocalizedStringArgs.arg5, arg5);
   }
 
+  Widget text({
+    @required String arg1,
+    @required String arg2,
+    @required String arg3,
+    @required String arg4,
+    @required String arg5,
+    Key key,
+    BuildContext context,
+    TextStyle style,
+    StrutStyle strutStyle,
+    TextAlign textAlign,
+    TextDirection textDirection,
+    Locale locale,
+    bool softWrap,
+    TextOverflow overflow,
+    double textScaleFactor,
+    int maxLines,
+    String semanticsLabel,
+    TextWidthBasis textWidthBasis,
+    TextHeightBehavior textHeightBehavior,
+  }) =>
+      Text(
+        get(arg1, arg2, arg3, arg4, arg5, context),
+        key: key,
+        style: style,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaleFactor: textScaleFactor,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+      );
+
   factory ArgLocalizedString5.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString5(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>)
-          .map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 

@@ -31,11 +31,46 @@ class ArgLocalizedString3 extends LocalizedString {
         .replaceAll(LocalizedStringArgs.arg3, arg3);
   }
 
+  Widget text({
+    @required String arg1,
+    @required String arg2,
+    @required String arg3,
+    Key key,
+    BuildContext context,
+    TextStyle style,
+    StrutStyle strutStyle,
+    TextAlign textAlign,
+    TextDirection textDirection,
+    Locale locale,
+    bool softWrap,
+    TextOverflow overflow,
+    double textScaleFactor,
+    int maxLines,
+    String semanticsLabel,
+    TextWidthBasis textWidthBasis,
+    TextHeightBehavior textHeightBehavior,
+  }) =>
+      Text(
+        get(arg1, arg2, arg3, context),
+        key: key,
+        style: style,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaleFactor: textScaleFactor,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+      );
+
   factory ArgLocalizedString3.fromJson(Map<String, dynamic> map) {
     return ArgLocalizedString3(
       key: map['key'] as String,
-      values: (map['values'] as Map<String, dynamic>)
-          .map((key, dynamic value) => MapEntry(key, value as String)),
+      values: (map['values'] as Map<String, dynamic>).map((key, dynamic value) => MapEntry(key, value as String)),
     );
   }
 
