@@ -1,3 +1,7 @@
+## [0.7.0]
+
+* Add text getter method that wraps string with `Text` widget
+
 ## [0.6.0]
 
 * Add fromJson/toJson methods (compatibility with [json_serializable](https://pub.dev/packages/json_serializable), [freezed](https://pub.dev/packages/freezed) etc.)

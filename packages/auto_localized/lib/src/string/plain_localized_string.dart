@@ -14,6 +14,8 @@ class PlainLocalizedString extends LocalizedString {
   ///(Wrapping [MaterialApp] with [AutoLocalizedApp] is required)
   String get([BuildContext context]) => getRaw(context);
 
+  /// Translates string by locale like [get] method
+  /// and wraps it with [Text] widget
   Widget text({
     Key key,
     BuildContext context,

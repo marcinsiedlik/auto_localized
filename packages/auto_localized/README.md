@@ -220,6 +220,17 @@ auto_localized offers some configuration options for validation and code generat
 | `convertToCamelCase`   |     `true`    | If set to `true` then any key case will be converted to camel case in generated source. For example key: `{ "test_message": "..." }` will be generated to source: `static const testMessage = LocalizedString(...);` If set to `false` the original key will be used.|
 | `onBlankValueStrategy` |    `error`    | Defines the behaviour when the value for key is blank or contains only whitespaces. **Note:** This behaviour is will not be triggered if value is explicitly defined as `null`. In that case generator will always throw an Error. |
 
+### Text getter
+
+Translation can be also accessed with `text` method that wraps string with `Text` widget
+```dart
+Strings.welcomeMessage.text(
+  arg: 'Marcin',
+  textAlign: TextAlign.center,
+  style: TextStyle(fontSize: 17),
+);
+``` 
+
 ### Current locale
 
 You can access the current locale with:

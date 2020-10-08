@@ -27,6 +27,8 @@ class ArgLocalizedString1 extends LocalizedString {
     return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg);
   }
 
+  /// Translates string by locale like [get] method
+  /// and wraps it with [Text] widget
   Widget text({
     @required String arg,
     Key key,

@@ -33,6 +33,8 @@ class ArgLocalizedString4 extends LocalizedString {
         .replaceAll(LocalizedStringArgs.arg4, arg4);
   }
 
+  /// Translates string by locale like [get] method
+  /// and wraps it with [Text] widget
   Widget text({
     @required String arg1,
     @required String arg2,
