@@ -45,15 +45,19 @@ class AnnotationConfigResolver {
       message: '${_element.name} is not a class element',
     );
     _throwSourceErrorIf(
-      condition: () => _element.name.length <= 1,
+      condition: () => _element.name == null,
+      message: 'Class name is null',
+    );
+    _throwSourceErrorIf(
+      condition: () => _element.name!.length <= 1,
       message: '${_element.name} is too short',
     );
     _throwSourceErrorIf(
-      condition: () => _element.name.substring(0, 1) != '\$',
+      condition: () => _element.name!.substring(0, 1) != '\$',
       message: '${_element.name} class name need to begin with "\$ sign"',
     );
 
-    return _element.name.substring(1);
+    return _element.name!.substring(1);
   }
 
   bool _resolveConvertToCamelCase() {
@@ -65,9 +69,7 @@ class AnnotationConfigResolver {
           '"${AnnotationConfig.convertToCamelCaseField}" in ${_element.name}. '
           'Inspected value equals null.',
     );
-    return _annotation
-        .peek(AnnotationConfig.convertToCamelCaseField)
-        ?.boolValue;
+    return _annotation.peek(AnnotationConfig.convertToCamelCaseField).boolValue;
   }
 
   OnBlankValueStrategy _resolveOnBlankValueStrategy() {
@@ -80,7 +82,7 @@ class AnnotationConfigResolver {
       message: 'Unexpected error occurred while inspecting '
           '"${AnnotationConfig.onBlankValueStrategyField}" in ${_element.name}.',
     );
-    return AnnotationConfig.onBlankValueStrategyStringMap[accessor];
+    return AnnotationConfig.onBlankValueStrategyStringMap[accessor]!;
   }
 
   bool _resolveGenerateGetterMethods() {
@@ -95,17 +97,11 @@ class AnnotationConfigResolver {
     );
     return _annotation
         .peek(AnnotationConfig.generateGetterMethodsField)
-        ?.boolValue;
+        .boolValue;
   }
 
   Future<List<AnnotationConfigLocale>> _resolveLocales() async {
-    final locales = _annotation.peek(AnnotationConfig.localesField)?.listValue;
-    _throwSourceErrorIf(
-      condition: () => locales == null,
-      message:
-          'Unexpected error occurred while inspecting locales in ${_element.name}. '
-          'Inspected value equals null.',
-    );
+    final locales = _annotation.peek(AnnotationConfig.localesField).listValue;
     _throwSourceErrorIf(
       condition: () => locales.isEmpty,
       message: "${AnnotationConfig.localesField} list can't be empty",
@@ -117,14 +113,16 @@ class AnnotationConfigResolver {
 
   Future<AnnotationConfigLocale> _resolveLocale(DartObject object) async {
     final languageCode = object
-        .getField(AnnotationConfigLocale.languageCodeField)
-        ?.toStringValue();
+            .getField(AnnotationConfigLocale.languageCodeField)
+            ?.toStringValue() ??
+        '';
     final countryCode = object
         .getField(AnnotationConfigLocale.countryCodeField)
         ?.toStringValue();
     final filePath = object
-        .getField(AnnotationConfigLocale.translationsFilePathField)
-        ?.toStringValue();
+            .getField(AnnotationConfigLocale.translationsFilePathField)
+            ?.toStringValue() ??
+        '';
 
     _throwSourceErrorIf(
       condition: () => languageCode.isNullOrBlank || filePath.isNullOrBlank,
@@ -140,8 +138,11 @@ class AnnotationConfigResolver {
     );
   }
 
-  void _throwSourceErrorIf(
-      {bool Function() condition, String message, String todo}) {
+  void _throwSourceErrorIf({
+    required bool Function() condition,
+    required String message,
+    String? todo,
+  }) {
     if (condition()) {
       throw InvalidGenerationSourceError(message,
           element: _element, todo: todo);

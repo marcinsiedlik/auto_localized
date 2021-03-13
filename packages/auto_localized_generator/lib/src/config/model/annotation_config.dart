@@ -34,19 +34,25 @@ class AnnotationConfig {
       identical(this, other) ||
       other is AnnotationConfig &&
           runtimeType == other.runtimeType &&
-          convertStringsToCamelCase == other.convertStringsToCamelCase &&
           stringsClassName == other.stringsClassName &&
+          convertStringsToCamelCase == other.convertStringsToCamelCase &&
+          onBlankValueStrategy == other.onBlankValueStrategy &&
+          generateGetterMethods == other.generateGetterMethods &&
           locales == other.locales;
 
   @override
   int get hashCode =>
-      convertStringsToCamelCase.hashCode ^
       stringsClassName.hashCode ^
+      convertStringsToCamelCase.hashCode ^
+      onBlankValueStrategy.hashCode ^
+      generateGetterMethods.hashCode ^
       locales.hashCode;
 
   @override
   String toString() => 'AnnotationConfig{'
-      'convertStringsToCamelCase: $convertStringsToCamelCase, '
       'stringsClassName: $stringsClassName, '
+      'convertStringsToCamelCase: $convertStringsToCamelCase, '
+      'onBlankValueStrategy: $onBlankValueStrategy, '
+      'generateGetterMethods: $generateGetterMethods, '
       'locales: $locales}';
 }

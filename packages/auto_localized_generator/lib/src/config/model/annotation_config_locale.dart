@@ -22,7 +22,7 @@ class AnnotationConfigLocale {
   int get hashCode => info.hashCode ^ translations.hashCode;
 
   @override
-  String toString() => 'AnnotationConfigLocale{'
-      'localeInfo: $info, '
-      'translations: $translations}';
+  String toString() {
+    return 'AnnotationConfigLocale{info: $info, translations: $translations}';
+  }
 }
