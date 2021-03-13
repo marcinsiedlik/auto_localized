@@ -25,10 +25,10 @@ class AssetReader {
   }
 
   R _onExtension<R>({
-    String extension,
-    R Function() json,
-    R Function() yaml,
-    R Function() notSupported,
+    required String extension,
+    required R Function() json,
+    required R Function() yaml,
+    required R Function() notSupported,
   }) {
     if (extension == '.json') {
       return json();

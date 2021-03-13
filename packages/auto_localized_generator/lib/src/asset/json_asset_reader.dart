@@ -18,12 +18,12 @@ class JsonAssetReader {
   Future<Map<String, String>> _decodeJsonToMap(
       String stringJson, AssetId assetId) async {
     try {
-      final json = await jsonDecode(stringJson) as Map<String, dynamic>;
+      final json = await jsonDecode(stringJson) as Map<String?, Object?>?;
 
       if (json == null) {
         return <String, String>{};
       }
-      return json.map((key, dynamic value) {
+      return json.map((key, Object? value) {
         if (key == null || value == null) {
           throw TranslationValueInvalidException(
               assetId.path, key, value.toString());
