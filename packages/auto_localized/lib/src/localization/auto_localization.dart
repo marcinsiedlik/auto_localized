@@ -35,11 +35,17 @@ class AutoLocalization {
     instance._onLocaleUpdateCallbacks.remove(onChange);
   }
 
+  ///Gets the [AutoLocalization] instance from given [BuildContext].
+  static AutoLocalization? maybeOf(BuildContext context) =>
+      Localizations.of<AutoLocalization>(
+        context,
+        AutoLocalization,
+      );
+
+  ///Gets the not-null [AutoLocalization] instance from given [BuildContext].
+  ///If not found throws an [FlutterError]
   static AutoLocalization of(BuildContext context) {
-    final localizations = Localizations.of<AutoLocalization>(
-      context,
-      AutoLocalization,
-    );
+    final localizations = AutoLocalization.maybeOf(context);
     if (localizations == null) {
       throw FlutterError.fromParts([
         ErrorSummary('No AutoLocalization found.'),
