@@ -1,9 +1,8 @@
 class LocaleInfo {
   final String languageCode;
-  final String countryCode;
+  final String? countryCode;
 
-  const LocaleInfo(this.languageCode, this.countryCode)
-      : assert(languageCode != null);
+  const LocaleInfo(this.languageCode, this.countryCode);
 
   @override
   bool operator ==(Object other) =>

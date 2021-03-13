@@ -33,12 +33,12 @@ abstract class LocalizedStringType {
       id >= other.id ? this : other;
 
   T when<T>({
-    T Function(PlainLocalizedStringType) plain,
-    T Function(ArgLocalizedStringType1) arg1,
-    T Function(ArgLocalizedStringType2) arg2,
-    T Function(ArgLocalizedStringType3) arg3,
-    T Function(ArgLocalizedStringType4) arg4,
-    T Function(ArgLocalizedStringType5) arg5,
+    required T Function(PlainLocalizedStringType) plain,
+    required T Function(ArgLocalizedStringType1) arg1,
+    required T Function(ArgLocalizedStringType2) arg2,
+    required T Function(ArgLocalizedStringType3) arg3,
+    required T Function(ArgLocalizedStringType4) arg4,
+    required T Function(ArgLocalizedStringType5) arg5,
   }) {
     if (this is PlainLocalizedStringType) {
       return plain(this as PlainLocalizedStringType);
@@ -76,9 +76,9 @@ abstract class LocalizedStringType {
 class PlainLocalizedStringType extends LocalizedStringType {
   const PlainLocalizedStringType()
       : super(
-          0,
+    0,
           'PlainLocalizedString',
-          '([BuildContext context])',
+          '([BuildContext? context])',
           '()',
           '(context)',
           '(this)',
@@ -88,9 +88,9 @@ class PlainLocalizedStringType extends LocalizedStringType {
 class ArgLocalizedStringType1 extends LocalizedStringType {
   const ArgLocalizedStringType1()
       : super(
-          1,
+    1,
           'ArgLocalizedString1',
-          '(String arg, [BuildContext context])',
+          '(String arg, [BuildContext? context])',
           '(String arg)',
           '(arg, context)',
           '(arg, this)',
@@ -100,9 +100,9 @@ class ArgLocalizedStringType1 extends LocalizedStringType {
 class ArgLocalizedStringType2 extends LocalizedStringType {
   const ArgLocalizedStringType2()
       : super(
-          2,
+    2,
           'ArgLocalizedString2',
-          '(String arg1, String arg2, [BuildContext context,])',
+          '(String arg1, String arg2, [BuildContext? context,])',
           '(String arg1, String arg2)',
           '(arg1, arg2, context)',
           '(arg1, arg2, this)',
@@ -112,9 +112,9 @@ class ArgLocalizedStringType2 extends LocalizedStringType {
 class ArgLocalizedStringType3 extends LocalizedStringType {
   const ArgLocalizedStringType3()
       : super(
-          3,
+    3,
           'ArgLocalizedString3',
-          '(String arg1, String arg2, String arg3, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3, [BuildContext? context,])',
           '(String arg1, String arg2, String arg3,)',
           '(arg1, arg2, arg3, context)',
           '(arg1, arg2, arg3, this)',
@@ -124,9 +124,9 @@ class ArgLocalizedStringType3 extends LocalizedStringType {
 class ArgLocalizedStringType4 extends LocalizedStringType {
   const ArgLocalizedStringType4()
       : super(
-          4,
+    4,
           'ArgLocalizedString4',
-          '(String arg1, String arg2, String arg3, String arg4, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3, String arg4, [BuildContext? context,])',
           '(String arg1, String arg2, String arg3, String arg4,)',
           '(arg1, arg2, arg3, arg4, context)',
           '(arg1, arg2, arg3, arg4, this)',
@@ -136,9 +136,9 @@ class ArgLocalizedStringType4 extends LocalizedStringType {
 class ArgLocalizedStringType5 extends LocalizedStringType {
   const ArgLocalizedStringType5()
       : super(
-          5,
+    5,
           'ArgLocalizedString5',
-          '(String arg1, String arg2, String arg3, String arg4, String arg5, [BuildContext context,])',
+          '(String arg1, String arg2, String arg3, String arg4, String arg5, [BuildContext? context,])',
           '(String arg1, String arg2, String arg3, String arg4, String arg5,)',
           '(arg1, arg2, arg3, arg4, arg5, context)',
           '(arg1, arg2, arg3, arg4, arg5, this)',

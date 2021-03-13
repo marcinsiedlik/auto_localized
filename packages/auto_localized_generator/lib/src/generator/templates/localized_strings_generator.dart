@@ -15,6 +15,7 @@ class LocalizedStringsGenerator implements CodeGenerator {
     final buffer = StringBuffer();
     buffer.writeln('@immutable');
     buffer.writeln('class ${_config.stringsClassName} {');
+    buffer.writeln('const ${_config.stringsClassName}._();');
     buffer.writeln(_generateLocalizedStringDefinitions());
     if (_config.generateGetterMethods) {
       buffer.writeln(_generateLocalizedStringGetters());
