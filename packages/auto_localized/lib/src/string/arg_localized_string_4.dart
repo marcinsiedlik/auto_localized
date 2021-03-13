@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class ArgLocalizedString4 extends LocalizedString {
   const ArgLocalizedString4({
-    String key,
-    Map<String, String> values,
+    required String key,
+    required Map<String, String> values,
   }) : super(4, key: key, values: values);
 
   ///Translates string by locale from given [context].
@@ -19,41 +19,35 @@ class ArgLocalizedString4 extends LocalizedString {
     String arg2,
     String arg3,
     String arg4, [
-    BuildContext context,
-  ]) {
-    assert(
-      arg1 != null && arg2 != null && arg3 != null && arg4 != null,
-      "Arguments for localized strings can't be null."
-      " Occurred in key: $key",
-    );
-    return getRaw(context)
-        .replaceAll(LocalizedStringArgs.arg1, arg1)
-        .replaceAll(LocalizedStringArgs.arg2, arg2)
-        .replaceAll(LocalizedStringArgs.arg3, arg3)
-        .replaceAll(LocalizedStringArgs.arg4, arg4);
-  }
+    BuildContext? context,
+  ]) =>
+      getRaw(context)
+          .replaceAll(LocalizedStringArgs.arg1, arg1)
+          .replaceAll(LocalizedStringArgs.arg2, arg2)
+          .replaceAll(LocalizedStringArgs.arg3, arg3)
+          .replaceAll(LocalizedStringArgs.arg4, arg4);
 
   /// Translates string by locale like [get] method
   /// and wraps it with [Text] widget
   Widget text({
-    @required String arg1,
-    @required String arg2,
-    @required String arg3,
-    @required String arg4,
-    Key key,
-    BuildContext context,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    Locale locale,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    String semanticsLabel,
-    TextWidthBasis textWidthBasis,
-    TextHeightBehavior textHeightBehavior,
+    required String arg1,
+    required String arg2,
+    required String arg3,
+    required String arg4,
+    Key? key,
+    BuildContext? context,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextAlign? textAlign,
+    TextDirection? textDirection,
+    Locale? locale,
+    bool? softWrap,
+    TextOverflow? overflow,
+    double? textScaleFactor,
+    int? maxLines,
+    String? semanticsLabel,
+    TextWidthBasis? textWidthBasis,
+    TextHeightBehavior? textHeightBehavior,
   }) =>
       Text(
         get(arg1, arg2, arg3, arg4, context),

@@ -9,12 +9,11 @@ class AutoLocalization {
   final List<LocaleUpdateCallback> _onLocaleUpdateCallbacks = [];
 
   ///Current app Locale
-  Locale locale;
+  late Locale locale;
 
-  static AutoLocalization _instance;
+  static final AutoLocalization _instance = AutoLocalization._();
 
-  static AutoLocalization get instance =>
-      _instance ?? (_instance = AutoLocalization._());
+  static AutoLocalization get instance => _instance;
 
   AutoLocalization._();
 
@@ -36,6 +35,25 @@ class AutoLocalization {
     instance._onLocaleUpdateCallbacks.remove(onChange);
   }
 
-  static AutoLocalization of(BuildContext context) =>
-      Localizations.of<AutoLocalization>(context, AutoLocalization);
+  static AutoLocalization of(BuildContext context) {
+    final localizations = Localizations.of<AutoLocalization>(
+      context,
+      AutoLocalization,
+    );
+    if (localizations == null) {
+      throw FlutterError.fromParts([
+        ErrorSummary('No AutoLocalization found.'),
+        ErrorDescription(
+            '${context.widget.runtimeType} widgets require AutoLocalization '
+            'to be provided by a Localizations widget ancestor.'),
+        ErrorHint(
+            'Did you forget to add AutoLocalization localization delegate to '
+            'MaterialApp widget?'),
+        ...context.describeMissingAncestor(
+          expectedAncestorType: AutoLocalization,
+        )
+      ]);
+    }
+    return localizations;
+  }
 }
