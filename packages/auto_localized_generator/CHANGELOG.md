@@ -1,10 +1,16 @@
+## [1.0.0]
+
+* Null-safety migration
+* Constructor of generated strings class is now private (IntelliSense improvement)
+
 ## [0.7.0]
 
 * Add text getter method that wraps string with `Text` widget
 
 ## [0.6.0]
 
-* Add fromJson/toJson methods (compatibility with [json_serializable](https://pub.dev/packages/json_serializable), [freezed](https://pub.dev/packages/freezed) etc.)
+* Add fromJson/toJson methods (compatibility with [json_serializable](https://pub.dev/packages/json_serializable)
+  , [freezed](https://pub.dev/packages/freezed) etc.)
 * Fix README.md minor error
 
 ## [0.5.2]
@@ -39,7 +45,7 @@
 
 * Add Safe Arguments supports.
 * You can get translation without passing `BuildContext` in `get` method. (Wrapping `MaterialApp` with `AutoLocalizedApp` is required).
-* The current locale is now accessible with `AutoLocalization.instance.locale`. 
+* The current locale is now accessible with `AutoLocalization.instance.locale`.
 
 ## [0.2.0] Breaking Change
 

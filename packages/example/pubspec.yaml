@@ -8,11 +8,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  auto_localized: ^0.8.0
+  auto_localized: ^1.0.0
 
 dev_dependencies:
   build_runner: ^1.10.13
-  auto_localized_generator: ^0.8.0
+  auto_localized_generator: ^1.0.0
 
 flutter:
 
