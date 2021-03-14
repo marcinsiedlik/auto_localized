@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 class ArgLocalizedString1 extends LocalizedString {
   const ArgLocalizedString1({
-    String key,
-    Map<String, String> values,
+    required String key,
+    required Map<String, String> values,
   }) : super(1, key: key, values: values);
 
   ///Translates string by locale from given [context].
@@ -17,34 +17,28 @@ class ArgLocalizedString1 extends LocalizedString {
   ///Returns value with given [arg] applied.
   String get(
     String arg, [
-    BuildContext context,
-  ]) {
-    assert(
-      arg != null,
-      "Arguments for localized strings can't be null."
-      " Occurred in key: $key",
-    );
-    return getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg);
-  }
+    BuildContext? context,
+  ]) =>
+      getRaw(context).replaceAll(LocalizedStringArgs.arg1, arg);
 
   /// Translates string by locale like [get] method
   /// and wraps it with [Text] widget
   Widget text({
-    @required String arg,
-    Key key,
-    BuildContext context,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    Locale locale,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    String semanticsLabel,
-    TextWidthBasis textWidthBasis,
-    TextHeightBehavior textHeightBehavior,
+    required String arg,
+    Key? key,
+    BuildContext? context,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextAlign? textAlign,
+    TextDirection? textDirection,
+    Locale? locale,
+    bool? softWrap,
+    TextOverflow? overflow,
+    double? textScaleFactor,
+    int? maxLines,
+    String? semanticsLabel,
+    TextWidthBasis? textWidthBasis,
+    TextHeightBehavior? textHeightBehavior,
   }) =>
       Text(
         get(arg, context),

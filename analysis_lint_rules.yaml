@@ -665,7 +665,7 @@ linter:
 
     # Any sorting is better than no sorting
     # https://dart-lang.github.io/linter/lints/sort_pub_dependencies.html
-    - sort_pub_dependencies
+    # - sort_pub_dependencies
 
     # Default constructor comes first.
     # pedantic: disabled

@@ -9,26 +9,36 @@ abstract class LocalizedString {
   final String key;
   final Map<String, String> values;
 
-  const LocalizedString(this.id, {@required this.key, @required this.values});
+  const LocalizedString(
+    this.id, {
+    required this.key,
+    required this.values,
+  });
 
   ///Translates string by locale from given [context].
   ///You can get translation without passing context -
   ///then the last cached locale will be used.
   ///(Wrapping [MaterialApp] with [AutoLocalizedApp] is required)
   ///Returns raw value (without args applied).
-  String getRaw([BuildContext context]) {
-    return context != null
+  String getRaw([BuildContext? context]) {
+    final text = context != null
         ? values[AutoLocalization.of(context).locale.toString()]
         : values[AutoLocalization.instance.locale.toString()];
+
+    if (text == null) {
+      throw FlutterError('AutoLocalized: value for $key is null. This should '
+          'never happen, you can fill bug report on github');
+    }
+    return text;
   }
 
   T when<T>({
-    T Function(PlainLocalizedString string) plain,
-    T Function(ArgLocalizedString1 string) arg1,
-    T Function(ArgLocalizedString2 string) arg2,
-    T Function(ArgLocalizedString3 string) arg3,
-    T Function(ArgLocalizedString4 string) arg4,
-    T Function(ArgLocalizedString5 string) arg5,
+    required T Function(PlainLocalizedString string) plain,
+    required T Function(ArgLocalizedString1 string) arg1,
+    required T Function(ArgLocalizedString2 string) arg2,
+    required T Function(ArgLocalizedString3 string) arg3,
+    required T Function(ArgLocalizedString4 string) arg4,
+    required T Function(ArgLocalizedString5 string) arg5,
   }) {
     if (this is PlainLocalizedString) {
       return plain(this as PlainLocalizedString);

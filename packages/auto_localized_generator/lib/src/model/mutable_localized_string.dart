@@ -6,7 +6,7 @@ class MutableLocalizedString {
   LocalizedStringType type;
   Map<LocaleInfo, String> values;
 
-  MutableLocalizedString(this.key, this.values);
+  MutableLocalizedString(this.key, this.type, this.values);
 
   MutableLocalizedString.empty(this.key)
       : values = {},

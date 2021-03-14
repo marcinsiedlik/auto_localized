@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
 class AutoLocalizedApp extends StatefulWidget {
   final Widget child;
 
-  const AutoLocalizedApp({Key key, @required this.child}) : super(key: key);
+  const AutoLocalizedApp({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
 
   @override
   _AutoLocalizedAppState createState() => _AutoLocalizedAppState();
@@ -33,7 +36,7 @@ class _AutoLocalizedAppState extends State<AutoLocalizedApp> {
       firstLaunch = false;
       return;
     }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       (context as Element).visitChildren(_rebuildElement);
     });
   }

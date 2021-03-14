@@ -6,7 +6,7 @@ import 'package:auto_localized/src/annotation/on_blank_value_strategy.dart';
 ///AutoLocalized generator config annotation class
 class AutoLocalized {
   ///List of [AutoLocalizedLocale], which is the
-  ///main part of the config. List must by not-null and can't be empty.
+  ///main part of the config. List can't be empty.
   final List<AutoLocalizedLocale> locales;
 
   ///If set to `true` then any key case will be converted to camel case
@@ -72,9 +72,9 @@ class AutoLocalized {
   final bool generateGetterMethods;
 
   const AutoLocalized({
-    this.locales,
+    required this.locales,
     this.convertToCamelCase = true,
     this.onBlankValueStrategy = OnBlankValueStrategy.error,
     this.generateGetterMethods = false,
-  }) : assert(locales != null);
+  });
 }

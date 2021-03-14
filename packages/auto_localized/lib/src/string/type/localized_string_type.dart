@@ -25,12 +25,12 @@ abstract class LocalizedStringType {
       id >= other.id ? this : other;
 
   T when<T>({
-    T Function(PlainLocalizedStringType) plain,
-    T Function(ArgLocalizedStringType1) arg1,
-    T Function(ArgLocalizedStringType2) arg2,
-    T Function(ArgLocalizedStringType3) arg3,
-    T Function(ArgLocalizedStringType4) arg4,
-    T Function(ArgLocalizedStringType5) arg5,
+    required T Function(PlainLocalizedStringType) plain,
+    required T Function(ArgLocalizedStringType1) arg1,
+    required T Function(ArgLocalizedStringType2) arg2,
+    required T Function(ArgLocalizedStringType3) arg3,
+    required T Function(ArgLocalizedStringType4) arg4,
+    required T Function(ArgLocalizedStringType5) arg5,
   }) {
     if (this is PlainLocalizedStringType) {
       return plain(this as PlainLocalizedStringType);

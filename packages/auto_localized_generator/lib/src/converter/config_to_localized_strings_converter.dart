@@ -17,7 +17,7 @@ class ConfigToLocalizedStringsConverter {
     //Populate localized strings with config locales values
     config.locales.forEach((locale) {
       locale.translations.forEach((key, value) {
-        strings.firstWhere((e) => e.key == key)?.values[locale.info] = value;
+        strings.firstWhere((e) => e.key == key).values[locale.info] = value;
       });
     });
 

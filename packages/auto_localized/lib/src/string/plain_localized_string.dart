@@ -4,33 +4,33 @@ import 'package:flutter/material.dart';
 
 class PlainLocalizedString extends LocalizedString {
   const PlainLocalizedString({
-    String key,
-    Map<String, String> values,
+    required String key,
+    required Map<String, String> values,
   }) : super(0, key: key, values: values);
 
   ///Translates string by locale from given [context].
   ///You can get translation without passing context -
   ///then the last cached locale will be used.
   ///(Wrapping [MaterialApp] with [AutoLocalizedApp] is required)
-  String get([BuildContext context]) => getRaw(context);
+  String get([BuildContext? context]) => getRaw(context);
 
   /// Translates string by locale like [get] method
   /// and wraps it with [Text] widget
   Widget text({
-    Key key,
-    BuildContext context,
-    TextStyle style,
-    StrutStyle strutStyle,
-    TextAlign textAlign,
-    TextDirection textDirection,
-    Locale locale,
-    bool softWrap,
-    TextOverflow overflow,
-    double textScaleFactor,
-    int maxLines,
-    String semanticsLabel,
-    TextWidthBasis textWidthBasis,
-    TextHeightBehavior textHeightBehavior,
+    Key? key,
+    BuildContext? context,
+    TextStyle? style,
+    StrutStyle? strutStyle,
+    TextAlign? textAlign,
+    TextDirection? textDirection,
+    Locale? locale,
+    bool? softWrap,
+    TextOverflow? overflow,
+    double? textScaleFactor,
+    int? maxLines,
+    String? semanticsLabel,
+    TextWidthBasis? textWidthBasis,
+    TextHeightBehavior? textHeightBehavior,
   }) =>
       Text(
         get(context),

@@ -17,13 +17,13 @@ class YamlAssetReader {
   Future<Map<String, String>> _decodeYamlToMap(
       String yamlString, AssetId assetId) async {
     try {
-      final yaml = await loadYaml(yamlString) as YamlMap;
+      final yaml = await loadYaml(yamlString) as YamlMap?;
 
       if (yaml == null) {
         return <String, String>{};
       }
 
-      return yaml.map((dynamic key, dynamic value) {
+      return yaml.map((Object? key, Object? value) {
         if (key == null || value == null) {
           throw TranslationValueInvalidException(
               assetId.path, key.toString(), value.toString());
