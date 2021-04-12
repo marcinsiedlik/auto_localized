@@ -1,3 +1,7 @@
+## [1.0.1]
+
+* Update project dependencies
+
 ## [1.0.0]
 
 * Null-safety migration
