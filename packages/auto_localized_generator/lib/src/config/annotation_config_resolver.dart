@@ -69,14 +69,14 @@ class AnnotationConfigResolver {
           '"${AnnotationConfig.convertToCamelCaseField}" in ${_element.name}. '
           'Inspected value equals null.',
     );
-    return _annotation.peek(AnnotationConfig.convertToCamelCaseField).boolValue;
+    return convertCase!;
   }
 
   OnBlankValueStrategy _resolveOnBlankValueStrategy() {
     final accessor = _annotation
         .peek(AnnotationConfig.onBlankValueStrategyField)
         ?.revive()
-        ?.accessor;
+        .accessor;
     _throwSourceErrorIf(
       condition: () => accessor == null,
       message: 'Unexpected error occurred while inspecting '
@@ -95,18 +95,16 @@ class AnnotationConfigResolver {
           '"${AnnotationConfig.generateGetterMethodsField}" in ${_element.name}. '
           'Inspected value equals null.',
     );
-    return _annotation
-        .peek(AnnotationConfig.generateGetterMethodsField)
-        .boolValue;
+    return generateGetters!;
   }
 
   Future<List<AnnotationConfigLocale>> _resolveLocales() async {
-    final locales = _annotation.peek(AnnotationConfig.localesField).listValue;
+    final locales = _annotation.peek(AnnotationConfig.localesField)?.listValue;
     _throwSourceErrorIf(
-      condition: () => locales.isEmpty,
+      condition: () => locales == null || locales.isEmpty,
       message: "${AnnotationConfig.localesField} list can't be empty",
     );
-    return Stream.fromIterable(locales)
+    return Stream.fromIterable(locales!)
         .asyncMap((object) => _resolveLocale(object))
         .toList();
   }
@@ -141,11 +139,9 @@ class AnnotationConfigResolver {
   void _throwSourceErrorIf({
     required bool Function() condition,
     required String message,
-    String? todo,
   }) {
     if (condition()) {
-      throw InvalidGenerationSourceError(message,
-          element: _element, todo: todo);
+      throw InvalidGenerationSourceError(message, element: _element);
     }
   }
 }
