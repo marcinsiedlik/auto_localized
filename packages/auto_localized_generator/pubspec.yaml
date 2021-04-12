@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   auto_localized: ^1.0.0
-  build: ^1.6.0
-  source_gen: ^0.9.10+3
-  analyzer: ">=0.41.0 <2.0.0"
+  build: ^2.0.0
+  source_gen: ^1.0.0
+  analyzer: ^1.0.0
   recase: ^4.0.0-nullsafety.0
   yaml: ^3.1.0
 
