@@ -1,6 +1,6 @@
 name: auto_localized_generator
 description: Code generator for auto_localized, runtime-safe Flutter localization.
-version: 1.0.1
+version: 1.1.0
 homepage: https://github.com/marcinsiedlik/auto_localized
 
 environment:
