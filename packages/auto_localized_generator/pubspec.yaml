@@ -7,7 +7,7 @@ environment:
   sdk: '>=2.14.0 <3.0.0'
 
 dependencies:
-  auto_localized: ^1.0.0
+  auto_localized: ^1.1.0
   build: ^2.1.1
   source_gen: ^1.1.1
   analyzer: ^2.7.0
