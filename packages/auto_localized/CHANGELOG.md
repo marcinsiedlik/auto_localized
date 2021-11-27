@@ -1,3 +1,7 @@
+## [1.1.0]
+
+* Dependencies upgrade
+
 ## [1.0.0]
 
 * Null-safety migration
