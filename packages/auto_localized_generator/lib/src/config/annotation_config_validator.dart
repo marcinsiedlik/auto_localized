@@ -1,11 +1,13 @@
 import 'package:auto_localized/annotations.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config.dart';
 import 'package:auto_localized_generator/src/config/model/annotation_config_locale.dart';
+import 'package:auto_localized_generator/src/exception/forbidden_translation_key_exception.dart';
 import 'package:auto_localized_generator/src/exception/missing_translation_key_exception.dart';
 import 'package:auto_localized_generator/src/exception/translation_args_bad_order_exception.dart';
 import 'package:auto_localized_generator/src/exception/translation_value_blank_exception.dart';
 import 'package:auto_localized_generator/src/utils/logging.dart';
 import 'package:auto_localized_generator/src/utils/string_extensions.dart';
+import 'package:recase/recase.dart';
 
 class AnnotationConfigValidator {
   const AnnotationConfigValidator();
@@ -14,6 +16,9 @@ class AnnotationConfigValidator {
     _assureKeysEqualityInLocales(config.locales);
     _checkForBlankValues(config);
     _assureArgsCorrectOrderInLocales(config.locales);
+    // Passing first locale because it doesn't matter at this point,
+    // equality of keys in all locales is validated already
+    _assertForbiddenKeysNotUsed(config);
   }
 
   void _assureKeysEqualityInLocales(List<AnnotationConfigLocale> locales) {
@@ -90,5 +95,40 @@ class AnnotationConfigValidator {
         throw TranslationArgsBadOrderException(locale.info, key, value);
       }
     });
+  }
+
+  void _assertForbiddenKeysNotUsed(AnnotationConfig config) {
+    final forbiddenWords = config.generateOfKeyFactories
+        ? <String>['allLocalizedStrings', 'ofKey', 'maybeOfKey']
+        : <String>[];
+
+    final forbiddenWordsAllCases =
+        forbiddenWords.map(_mapWordToPopularCases).expand((list) => list);
+    // Passing first locale because it doesn't matter at this point,
+    // equality of keys in all locales is validated already
+    config.locales.first.translations.keys.forEach((key) {
+      if (forbiddenWordsAllCases.contains(key)) {
+        throw ForbiddenTranslationKeyException(
+          key,
+          AnnotationConfig.generateOfKeyFactoriesField,
+        );
+      }
+    });
+  }
+
+  List<String> _mapWordToPopularCases(String word) {
+    final reCase = ReCase(word);
+    return [
+      word,
+      reCase.camelCase,
+      reCase.pascalCase,
+      reCase.sentenceCase,
+      reCase.snakeCase,
+      reCase.dotCase,
+      reCase.paramCase,
+      reCase.pathCase,
+      reCase.headerCase,
+      reCase.titleCase,
+    ];
   }
 }
