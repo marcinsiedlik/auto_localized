@@ -71,10 +71,25 @@ class AutoLocalized {
   ///
   final bool generateGetterMethods;
 
+  /// When set to true you will gain access to additional methods `ofKey` and
+  /// `maybeOfKey`. They will allow you to get [LocalizedString] at runtime
+  /// with key from translation file, for example:
+  /// ```dart
+  /// Strings.ofKey('test_message').getRaw();
+  ///
+  /// // or with cast
+  /// (Strings.ofKey('test_message') as ArgLocalizedString2).get('hello', 'world');
+  /// ```
+  ///
+  /// This feature is disabled by default because it introduces a point
+  /// of possible runtime failure - use at your own risk.
+  final bool generateOfKeyFactories;
+
   const AutoLocalized({
     required this.locales,
     this.convertToCamelCase = true,
     this.onBlankValueStrategy = OnBlankValueStrategy.error,
     this.generateGetterMethods = false,
+    this.generateOfKeyFactories = false,
   });
 }

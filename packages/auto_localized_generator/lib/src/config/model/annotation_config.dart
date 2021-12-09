@@ -8,6 +8,7 @@ class AnnotationConfig {
   static const convertToCamelCaseField = 'convertToCamelCase';
   static const onBlankValueStrategyField = 'onBlankValueStrategy';
   static const generateGetterMethodsField = 'generateGetterMethods';
+  static const generateOfKeyFactoriesField = 'generateOfKeyFactories';
 
   static const onBlankValueStrategyStringMap = {
     'OnBlankValueStrategy.ignore': OnBlankValueStrategy.ignore,
@@ -19,6 +20,7 @@ class AnnotationConfig {
   final bool convertStringsToCamelCase;
   final OnBlankValueStrategy onBlankValueStrategy;
   final bool generateGetterMethods;
+  final bool generateOfKeyFactories;
   final List<AnnotationConfigLocale> locales;
 
   const AnnotationConfig(
@@ -26,6 +28,7 @@ class AnnotationConfig {
     this.convertStringsToCamelCase,
     this.onBlankValueStrategy,
     this.generateGetterMethods,
+    this.generateOfKeyFactories,
     this.locales,
   );
 
@@ -38,6 +41,7 @@ class AnnotationConfig {
           convertStringsToCamelCase == other.convertStringsToCamelCase &&
           onBlankValueStrategy == other.onBlankValueStrategy &&
           generateGetterMethods == other.generateGetterMethods &&
+          generateOfKeyFactories == other.generateOfKeyFactories &&
           locales == other.locales;
 
   @override
@@ -46,6 +50,7 @@ class AnnotationConfig {
       convertStringsToCamelCase.hashCode ^
       onBlankValueStrategy.hashCode ^
       generateGetterMethods.hashCode ^
+      generateOfKeyFactories.hashCode ^
       locales.hashCode;
 
   @override
@@ -54,5 +59,6 @@ class AnnotationConfig {
       'convertStringsToCamelCase: $convertStringsToCamelCase, '
       'onBlankValueStrategy: $onBlankValueStrategy, '
       'generateGetterMethods: $generateGetterMethods, '
+      'generateOfKeyFactories: $generateOfKeyFactories, '
       'locales: $locales}';
 }
