@@ -20,6 +20,10 @@ class LocalizedStringsGenerator implements CodeGenerator {
     if (_config.generateGetterMethods) {
       buffer.writeln(_generateLocalizedStringGetters());
     }
+    if (_config.generateOfKeyFactories) {
+      buffer.writeln(_generateAllLocalizedStringsList());
+      buffer.writeln(_generateOfKeyFactories());
+    }
     buffer.writeln('}');
 
     return buffer.toString();
@@ -54,8 +58,7 @@ class LocalizedStringsGenerator implements CodeGenerator {
   }
 
   String _generateLocalizedStringDefinition(LocalizedString string) {
-    final name =
-        _config.convertStringsToCamelCase ? string.key.camelCase : string.key;
+    final name = _getKeyNameInProperCase(string.key);
     final buffer = StringBuffer()
       ..writeln("static const $name = ${string.type.name}(")
       ..writeln("key: '${string.key}',")
@@ -74,4 +77,46 @@ class LocalizedStringsGenerator implements CodeGenerator {
     });
     return buffer.toString();
   }
+
+  String _generateAllLocalizedStringsList() {
+    final buffer = StringBuffer();
+    buffer.writeln('static const allLocalizedStrings = <LocalizedString>[');
+    _strings.forEach((string) {
+      final name = _getKeyNameInProperCase(string.key);
+      buffer.writeln('$name,');
+    });
+    buffer.writeln('];');
+    return buffer.toString();
+  }
+
+  String _generateOfKeyFactories() {
+    final buffer = StringBuffer();
+    buffer.writeln(
+        '/// Returns an abstract version of [LocalizedString] based on given key');
+    buffer.writeln('/// or null if not exists.');
+    buffer.writeln('static LocalizedString? maybeOfKey(String key) {');
+    buffer.writeln('try {');
+    buffer.writeln(
+        'return allLocalizedStrings.firstWhere((string) => string.key == key);');
+    buffer.writeln('} catch (_) {');
+    buffer.writeln('return null;');
+    buffer.writeln('}');
+    buffer.writeln('}');
+    buffer.writeln();
+
+    buffer.writeln(
+        '/// Returns an abstract version of [LocalizedString] based on given key');
+    buffer.writeln('/// or throws an [Exception] if not exist');
+    buffer.writeln('static LocalizedString ofKey(String key) {');
+    buffer.writeln('final localized = maybeOfKey(key);');
+    buffer.writeln('if (localized != null) return localized;');
+    buffer.writeln('throw LocalizedStringNotFoundException(key);');
+    buffer.writeln('}');
+    buffer.writeln();
+
+    return buffer.toString();
+  }
+
+  String _getKeyNameInProperCase(String key) =>
+      _config.convertStringsToCamelCase ? key.camelCase : key;
 }
