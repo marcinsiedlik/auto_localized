@@ -92,12 +92,14 @@ class LocalizedStringsGenerator implements CodeGenerator {
   String _generateOfKeyFactories() {
     final buffer = StringBuffer();
     buffer.writeln(
-        '/// Returns an abstract version of [LocalizedString] based on given key');
-    buffer.writeln('/// or null if not exists.');
-    buffer.writeln('static LocalizedString? maybeOfKey(String key) {');
+        '/// Returns an generic version of [LocalizedString] based on given key');
+    buffer.writeln(
+        '/// and type, or null if not exists or given type is not matching.');
+    buffer.writeln(
+        'static T? maybeOfKey<T extends LocalizedString>(String key) {');
     buffer.writeln('try {');
     buffer.writeln(
-        'return allLocalizedStrings.firstWhere((string) => string.key == key);');
+        'return allLocalizedStrings.firstWhere((string) => string.key == key) as T;');
     buffer.writeln('} catch (_) {');
     buffer.writeln('return null;');
     buffer.writeln('}');
@@ -106,9 +108,10 @@ class LocalizedStringsGenerator implements CodeGenerator {
 
     buffer.writeln(
         '/// Returns an abstract version of [LocalizedString] based on given key');
-    buffer.writeln('/// or throws an [Exception] if not exist');
-    buffer.writeln('static LocalizedString ofKey(String key) {');
-    buffer.writeln('final localized = maybeOfKey(key);');
+    buffer.writeln('/// and type, or throws an [Exception] if not exist');
+    buffer.writeln('/// or given type is not matching.');
+    buffer.writeln('static T ofKey<T extends LocalizedString>(String key) {');
+    buffer.writeln('final localized = maybeOfKey<T>(key);');
     buffer.writeln('if (localized != null) return localized;');
     buffer.writeln('throw LocalizedStringNotFoundException(key);');
     buffer.writeln('}');

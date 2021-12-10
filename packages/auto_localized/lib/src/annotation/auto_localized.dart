@@ -77,8 +77,8 @@ class AutoLocalized {
   /// ```dart
   /// Strings.ofKey('test_message').getRaw();
   ///
-  /// // or with cast
-  /// (Strings.ofKey('test_message') as ArgLocalizedString2).get('hello', 'world');
+  /// // or with generics
+  /// Strings.ofKey<ArgLocalizedString2>('test_message').get('hello', 'world');
   /// ```
   ///
   /// This feature is disabled by default because it introduces a point
