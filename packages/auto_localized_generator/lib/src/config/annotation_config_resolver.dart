@@ -23,6 +23,7 @@ class AnnotationConfigResolver {
     final convertToCamelCase = _resolveConvertToCamelCase();
     final onBlankValueStrategy = _resolveOnBlankValueStrategy();
     final generateGetterMethods = _resolveGenerateGetterMethods();
+    final generateOfKeyFactories = _resolveGenerateOfKeyFactories();
     final locales = await _resolveLocales();
 
     final config = AnnotationConfig(
@@ -30,6 +31,7 @@ class AnnotationConfigResolver {
       convertToCamelCase,
       onBlankValueStrategy,
       generateGetterMethods,
+      generateOfKeyFactories,
       locales,
     );
 
@@ -96,6 +98,19 @@ class AnnotationConfigResolver {
           'Inspected value equals null.',
     );
     return generateGetters!;
+  }
+
+  bool _resolveGenerateOfKeyFactories() {
+    final generateOfKeyFactories = _annotation
+        .peek(AnnotationConfig.generateOfKeyFactoriesField)
+        ?.boolValue;
+    _throwSourceErrorIf(
+      condition: () => generateOfKeyFactories == null,
+      message: 'Unexpected error occurred while inspecting '
+          '"${AnnotationConfig.generateOfKeyFactoriesField}" in ${_element.name}. '
+          'Inspected value equals null.',
+    );
+    return generateOfKeyFactories!;
   }
 
   Future<List<AnnotationConfigLocale>> _resolveLocales() async {

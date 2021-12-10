@@ -1,5 +1,6 @@
 library auto_localized;
 
+export 'package:auto_localized/src/exception/localized_not_found.dart';
 export 'package:auto_localized/src/localization/auto_localization.dart';
 export 'package:auto_localized/src/localization/auto_localization_delegate.dart';
 export 'package:auto_localized/src/string/arg_localized_string_1.dart';
