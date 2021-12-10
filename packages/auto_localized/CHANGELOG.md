@@ -1,3 +1,7 @@
+## [1.2.0]
+
+* Added opt-in feature `generateOfKeyFactories` that allows you to obtain LocalizedString during runtime by generated methods `ofKey` and `maybeOfKey`
+
 ## [1.1.0]
 
 * Dependencies upgrade
