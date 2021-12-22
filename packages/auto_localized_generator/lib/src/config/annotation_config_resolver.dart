@@ -132,22 +132,34 @@ class AnnotationConfigResolver {
     final countryCode = object
         .getField(AnnotationConfigLocale.countryCodeField)
         ?.toStringValue();
-    final filePath = object
-            .getField(AnnotationConfigLocale.translationsFilePathField)
-            ?.toStringValue() ??
-        '';
+    final filePaths = object
+            .getField(AnnotationConfigLocale.translationsFilesField)
+            ?.toListValue()
+            ?.map((e) => e.toStringValue()!)
+            .toList() ??
+        [];
 
     _throwSourceErrorIf(
-      condition: () => languageCode.isNullOrBlank || filePath.isNullOrBlank,
+      condition: () => languageCode.isNullOrBlank,
       message: '''
-    "${AnnotationConfigLocale.languageCodeField}" and "${AnnotationConfigLocale.translationsFilePathField}"
+    "${AnnotationConfigLocale.languageCodeField}"
     in auto localized locale declaration can't be null or blank
     ''',
     );
+    _throwSourceErrorIf(
+      condition: () =>
+          filePaths.isEmpty && filePaths.any((path) => path.isBlank),
+      message: '''
+    "${AnnotationConfigLocale.translationsFilesField} list"
+    in auto localized locale declaration can't be empty, and can't contain
+    empty or blank string
+    ''',
+    );
 
+    final locale = LocaleInfo(languageCode, countryCode);
     return AnnotationConfigLocale(
-      LocaleInfo(languageCode, countryCode),
-      await _assetReader.loadAndDecode(filePath),
+      locale,
+      await _assetReader.loadAndDecodeList(filePaths, locale.toString()),
     );
   }
 
