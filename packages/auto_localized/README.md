@@ -80,16 +80,16 @@ import 'package:auto_localized/annotations.dart';
   locales: [
     AutoLocalizedLocale(
       languageCode: 'pl',
-      translationsFilePath: 'lang/pl.json',
+      translationsFiles: ['lang/pl.json'],
     ),
     AutoLocalizedLocale(
       languageCode: 'en',
       countryCode: 'US',
-      translationsFilePath: 'lang/en.yaml',
+      translationsFiles: ['lang/en.json'],
     ),
     AutoLocalizedLocale(
       languageCode: 'sk',
-      translationsFilePath: 'lang/sk.json',
+      translationsFiles: ['lang/sk.json'],
     ),
   ],
 )

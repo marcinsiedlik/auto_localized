@@ -1,3 +1,21 @@
+## [1.3.0] Breaking Changes
+
+* Updated dependencies
+* Added support for multiple translation files for single locale ([github issue link](https://github.com/marcinsiedlik/auto_localized/issues/9)), now you can split your translations to multiple files for easier management. Field `translationsFilePath` has been replaced with `translationsFiles`. Example migration:
+```dart
+// old
+AutoLocalizedLocale(
+  languageCode: 'pl',
+  translationsFilePath: 'lang/pl.json',
+)
+
+// new
+AutoLocalizedLocale(
+  languageCode: 'pl',
+  translationsFiles: ['lang/pl.json'],
+)
+```
+
 ## [1.2.0]
 
 * Added opt-in feature `generateOfKeyFactories` that allows you to obtain LocalizedString during runtime by generated methods `ofKey` and `maybeOfKey`
