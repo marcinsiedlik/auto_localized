@@ -1,3 +1,7 @@
+## [1.3.1]
+
+* Dependencies update, code styling
+
 ## [1.3.0] Breaking Changes
 
 * Updated dependencies

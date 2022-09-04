@@ -1,5 +1,4 @@
 import 'package:auto_localized/auto_localized.dart';
-import 'package:auto_localized/src/string/base/localized_string.dart';
 import 'package:auto_localized/src/string/base/localized_string_args.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

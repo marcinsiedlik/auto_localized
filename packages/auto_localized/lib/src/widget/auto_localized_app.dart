@@ -36,7 +36,7 @@ class _AutoLocalizedAppState extends State<AutoLocalizedApp> {
       firstLaunch = false;
       return;
     }
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       (context as Element).visitChildren(_rebuildElement);
     });
   }
