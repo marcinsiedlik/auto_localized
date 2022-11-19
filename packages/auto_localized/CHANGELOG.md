@@ -1,3 +1,7 @@
+## [1.3.2]
+
+* Dependencies update
+
 ## [1.3.1]
 
 * Dependencies update, code styling
